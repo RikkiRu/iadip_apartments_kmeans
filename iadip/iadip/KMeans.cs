@@ -12,6 +12,8 @@ namespace iadip
 
         public List<Cluster> Clasterize(List<Apartament> apartaments)
         {
+            //apartaments.Average
+
             return null;
         }
 

@@ -9,7 +9,7 @@ namespace iadip
     class ClusterData
     {
         public int Cost;
-        public int AreaSize;
+        public double AreaSize;
         public int RoomsCount;
         public int BathroomsCount;
     }

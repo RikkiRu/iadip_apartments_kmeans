@@ -61,6 +61,7 @@
     <Compile Include="IEstimator.cs" />
     <Compile Include="IParser.cs" />
     <Compile Include="IResultShower.cs" />
+    <Compile Include="KMeans.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SourceData.cs" />

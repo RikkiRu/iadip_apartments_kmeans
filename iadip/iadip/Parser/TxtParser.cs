@@ -15,7 +15,12 @@ namespace iadip {
     }
 
     class TxtParser : IParser {
+        public static Action EndReadFile = delegate { };
+        public static Action StartReadFile = delegate { };
+
         public List<Apartament> ReadFile(string path) {
+            StartReadFile();
+
             List<Apartament> apartments = new List<Apartament>();
 
             using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default)) {
@@ -45,6 +50,8 @@ namespace iadip {
                     apartments.Add(new Apartament(tempApartment));
                 }
             }
+
+            EndReadFile();
 
             return apartments;
         }

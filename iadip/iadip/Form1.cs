@@ -12,9 +12,11 @@ namespace iadip {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
+            TxtParser.StartReadFile += offClasterizationBtn;
+            TxtParser.EndReadFile += onClasterizationBtn;
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void bLoadData_Click(object sender, EventArgs e) {
             dialogOpenDataFile.ShowDialog();
         }
 
@@ -61,6 +63,18 @@ namespace iadip {
                 result = estimator.Estimate(clusters, new SourceData() { Cost = i });
                 dict.Add(i, result.Center.Cost);
             }
+        }
+        
+        private void offClasterizationBtn() { bBeginClasterize.Visible = false; }
+        private void onClasterizationBtn() { bBeginClasterize.Visible = true; }
+
+        private void bBeginClasterize_Click(object sender, EventArgs e) {
+            //Clasterize
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            TxtParser.StartReadFile -= offClasterizationBtn;
+            TxtParser.EndReadFile -= onClasterizationBtn;
         }
     }
 }

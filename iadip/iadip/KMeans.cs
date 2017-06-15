@@ -10,13 +10,28 @@ namespace iadip
     {
         private static Random random = new Random(0);
 
+        private class ClusterDataPair
+        {
+            public ClusterData AbsDist;
+            public ClusterData Original;
+            public double relativeDist;
+        }
+
         public List<Cluster> Clasterize(List<Apartament> apartaments)
         {
-            //apartaments.Average
+            List<ClusterData> data = apartaments.ToClusterData();
+            ClusterData a = data.ClusterAverage();
+
+            List<ClusterDataPair> absoluteDistances = new List<ClusterDataPair>();
+            foreach (var i in data)
+            {
+                ClusterData absDist = ClusterDataExtension.GetAbsoluteDistanceBetween(i, a);
+                absoluteDistances.Add(new ClusterDataPair() { AbsDist = absDist, Original = i } );
+            }
 
             return null;
         }
-
+        
         private List<Cluster> InitialClusterize()
         {
             return null;

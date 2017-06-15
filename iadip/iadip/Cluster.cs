@@ -8,6 +8,6 @@ namespace iadip
 {
     class Cluster
     {
-        List<Apartament> Apartaments;
+        public List<Apartament> Apartaments;
     }
 }

@@ -30,6 +30,7 @@
         {
             this.bLoadData = new System.Windows.Forms.Button();
             this.dialogOpenDataFile = new System.Windows.Forms.OpenFileDialog();
+            this.bTestEstimate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bLoadData
@@ -48,11 +49,22 @@
             this.dialogOpenDataFile.Filter = "data files|*.tsv; *.txt|All files|*.*";
             this.dialogOpenDataFile.FileOk += new System.ComponentModel.CancelEventHandler(this.dialogOpenDataFile_FileOk);
             // 
+            // bTestEstimate
+            // 
+            this.bTestEstimate.Location = new System.Drawing.Point(81, 207);
+            this.bTestEstimate.Name = "bTestEstimate";
+            this.bTestEstimate.Size = new System.Drawing.Size(189, 23);
+            this.bTestEstimate.TabIndex = 1;
+            this.bTestEstimate.Text = "TestEstimate";
+            this.bTestEstimate.UseVisualStyleBackColor = true;
+            this.bTestEstimate.Click += new System.EventHandler(this.bTestEstimate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 249);
+            this.Controls.Add(this.bTestEstimate);
             this.Controls.Add(this.bLoadData);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -64,6 +76,7 @@
 
         private System.Windows.Forms.Button bLoadData;
         private System.Windows.Forms.OpenFileDialog dialogOpenDataFile;
+        private System.Windows.Forms.Button bTestEstimate;
     }
 }
 

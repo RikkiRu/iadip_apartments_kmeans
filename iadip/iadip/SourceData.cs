@@ -8,6 +8,6 @@ namespace iadip
 {
     class SourceData
     {
-        public int Cost;
+        public double Cost;
     }
 }

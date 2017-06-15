@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace iadip
 {
@@ -10,30 +10,130 @@ namespace iadip
     {
         private static Random random = new Random(0);
 
-        private class ClusterDataPair
+        private class ApartamentCalculated
         {
-            public ClusterData AbsDist;
-            public ClusterData Original;
-            public double relativeDist;
+            public Apartament SourceApartament;
+            public ClusterDataLerp LerpValue;
+            public double DistanceToAverage;
+            public Center ClusterCenter;
         }
+
+        private class Center
+        {
+            public ClusterDataLerp Coords;
+            public List<ApartamentCalculated> Rows;
+
+            public Center(ClusterDataLerp coords)
+            {
+                Rows = new List<ApartamentCalculated>();
+                Coords = coords.Clone();
+            }
+        }
+
+        private List<Apartament> sourceData;
+        private List<ClusterData> clusterData;
+        private ClusterData min;
+        private ClusterData max;
+        private ClusterDataLerp average;
+        private ClusterDataLerp averageLerp;
+        private List<ClusterDataLerp> lerpValues;
+        private List<ApartamentCalculated> calculated;
+        private List<Center> centers;
 
         public List<Cluster> Clasterize(List<Apartament> apartaments)
         {
-            List<ClusterData> data = apartaments.ToClusterData();
-            ClusterData a = data.ClusterAverage();
+            StringBuilder log = new StringBuilder();
+            sourceData = apartaments;
+            clusterData = apartaments.ToClusterData();
+            foreach (var a in clusterData)
+                log.AppendLine(a.ToString());
 
-            List<ClusterDataPair> absoluteDistances = new List<ClusterDataPair>();
-            foreach (var i in data)
+            min = clusterData.ClusterMin();
+            max = clusterData.ClusterMax();
+            average = ClusterDataExtension.ClusterAverage(min, max);
+
+            // Взяли относительное среднее - всё по 0.5
+            averageLerp = average.Lerp(min, max);
+
+            log.AppendLine("min " + min.ToString());
+            log.AppendLine("max " + max.ToString());
+            log.AppendLine("average " + average.ToString());
+            log.AppendLine("average lerp: " + averageLerp.ToString());
+
+            lerpValues = clusterData.Select(c => c.Lerp(min, max)).ToList();
+
+            calculated = new List<ApartamentCalculated>();
+            for (int i = 0; i < sourceData.Count; i++)
             {
-                ClusterData absDist = ClusterDataExtension.GetAbsoluteDistanceBetween(i, a);
-                absoluteDistances.Add(new ClusterDataPair() { AbsDist = absDist, Original = i } );
+                calculated.Add(new ApartamentCalculated()
+                {
+                    SourceApartament = sourceData[i],
+                    LerpValue = lerpValues[i],
+                    // Дистанция между текущим относительным и средним относительным
+                    DistanceToAverage = ClusterDataExtension.Distance(lerpValues[i], averageLerp)
+                });
             }
 
-            return null;
-        }
-        
-        private List<Cluster> InitialClusterize()
-        {
+            calculated = calculated.OrderBy(c => c.DistanceToAverage).ToList();
+
+            foreach (var i in calculated)
+                log.AppendLine( string.Format("Dist: {0:0.00}; ", i.DistanceToAverage) + i.LerpValue.ToString());
+
+            // Берём центр в середине и несколько самых дальних
+            centers = new List<Center>();
+            centers.Add(new Center(calculated[0].LerpValue));
+            int clusters = (calculated.Count - 1) / 10;
+            for (int i = 0; i < clusters; i++)
+            {
+                centers.Add(new Center(calculated[calculated.Count - 1 - i].LerpValue));
+            }
+
+            Debug.Print(log.ToString());
+
+            bool wasChanges = true;
+
+            while (wasChanges)
+            {
+                wasChanges = false;
+
+                List<Center> toRecalculateCenters = new List<Center>();
+
+                for (int i = 0; i < calculated.Count; i++)
+                {
+                    ApartamentCalculated row = calculated[i];
+
+                    double minDist = double.MaxValue;
+                    Center c = null;
+
+                    for (int j = 0; j < centers.Count; j++)
+                    {
+                        double dist = ClusterDataExtension.Distance(centers[j].Coords, row.LerpValue);
+                        if (dist < minDist)
+                        {
+                            minDist = dist;
+                            c = centers[j];
+                        }
+                    }
+
+                    if (row.ClusterCenter != c)
+                    {
+                        if (row.ClusterCenter != null)
+                        {
+                            if (!toRecalculateCenters.Contains(row.ClusterCenter))
+                                toRecalculateCenters.Add(row.ClusterCenter);
+                            row.ClusterCenter.Rows.Remove(row);
+                        }
+
+                        row.ClusterCenter = c;
+                        wasChanges = true;
+
+                        if (!toRecalculateCenters.Contains(c))
+                            toRecalculateCenters.Add(c);
+                    }
+                }
+            }
+
+
             return null;
         }
 
@@ -56,6 +156,9 @@ namespace iadip
                 a1.Id = i;
                 apartaments.Add(a1);
             }
-        }
+
+            KMeans k = new KMeans();
+            List<Cluster> c = k.Clasterize(apartaments);
+        } 
     }
 }

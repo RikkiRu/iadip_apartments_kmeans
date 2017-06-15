@@ -13,6 +13,11 @@ namespace iadip
         public string City;
         public string Company;
 
+        public override string ToString()
+        {
+            return string.Format("Apartament {0}. City: {1}, Company: {2}, " + Data.ToString());
+        }
+
         public Apartament() {
             Data = new ClusterData();
         }

@@ -8,7 +8,7 @@ namespace iadip
 {
     class Cluster
     {
-        public ClusterData Center;
+        public ClusterDataLerp Center;
         public List<Apartament> Apartaments;
     }
 }

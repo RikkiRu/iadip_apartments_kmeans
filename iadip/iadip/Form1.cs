@@ -30,27 +30,27 @@ namespace iadip {
             }
             List<Cluster> clusters = new List<Cluster>();
             clusters.Add(new Cluster() {
-                Center = new ClusterData() {
+                Center = new ClusterDataLerp() {
                     Cost = 500
                 }
             });
             clusters.Add(new Cluster() {
-                Center = new ClusterData() {
+                Center = new ClusterDataLerp() {
                     Cost = 700
                 }
             });
             clusters.Add(new Cluster() {
-                Center = new ClusterData() {
+                Center = new ClusterDataLerp() {
                     Cost = 100
                 }
             });
             clusters.Add(new Cluster() {
-                Center = new ClusterData() {
+                Center = new ClusterDataLerp() {
                     Cost = 300
                 }
             });
             clusters.Add(new Cluster() {
-                Center = new ClusterData() {
+                Center = new ClusterDataLerp() {
                     Cost = 900
                 }
             });

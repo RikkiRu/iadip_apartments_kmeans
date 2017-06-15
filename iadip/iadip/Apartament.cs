@@ -12,5 +12,21 @@ namespace iadip
         public int Id;
         public string City;
         public string Company;
+
+        public Apartament() {
+            Data = new ClusterData();
+        }
+
+        public Apartament(Apartament apartment) {
+            Data = new ClusterData() {
+                Cost = apartment.Data.Cost,
+                AreaSize = apartment.Data.AreaSize,
+                RoomsCount = apartment.Data.RoomsCount,
+                BathroomsCount = apartment.Data.BathroomsCount
+            };
+            Id = apartment.Id;
+            City = apartment.City;
+            Company = apartment.Company;
+        }
     }
 }

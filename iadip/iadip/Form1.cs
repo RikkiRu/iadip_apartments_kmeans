@@ -16,5 +16,14 @@ namespace iadip
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e) {
+            dialogOpenDataFile.ShowDialog();            
+        }
+
+        private void dialogOpenDataFile_FileOk(object sender, CancelEventArgs e) {
+            IParser parser = new TxtParser();
+            List<Apartament> apartments = parser.ReadFile(dialogOpenDataFile.FileName);
+        }
     }
 }

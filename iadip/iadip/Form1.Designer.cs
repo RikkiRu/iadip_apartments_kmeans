@@ -28,13 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.bLoadData = new System.Windows.Forms.Button();
+            this.dialogOpenDataFile = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
+            // 
+            // bLoadData
+            // 
+            this.bLoadData.Location = new System.Drawing.Point(81, 31);
+            this.bLoadData.Name = "bLoadData";
+            this.bLoadData.Size = new System.Drawing.Size(189, 117);
+            this.bLoadData.TabIndex = 0;
+            this.bLoadData.Text = "Load Data";
+            this.bLoadData.UseVisualStyleBackColor = true;
+            this.bLoadData.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dialogOpenDataFile
+            // 
+            this.dialogOpenDataFile.FileName = "data.tsv";
+            this.dialogOpenDataFile.Filter = "data files|*.tsv; *.txt|All files|*.*";
+            this.dialogOpenDataFile.FileOk += new System.ComponentModel.CancelEventHandler(this.dialogOpenDataFile_FileOk);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 249);
+            this.ClientSize = new System.Drawing.Size(350, 249);
+            this.Controls.Add(this.bLoadData);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -42,6 +61,9 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button bLoadData;
+        private System.Windows.Forms.OpenFileDialog dialogOpenDataFile;
     }
 }
 

@@ -59,12 +59,13 @@
     <Compile Include="IClusterize.cs" />
     <Compile Include="IClusterOutput.cs" />
     <Compile Include="IEstimator.cs" />
-    <Compile Include="IParser.cs" />
+    <Compile Include="Parser\IParser.cs" />
     <Compile Include="IResultShower.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleEstimator.cs" />
     <Compile Include="SourceData.cs" />
-    <Compile Include="TxtParser.cs" />
+    <Compile Include="Parser\TxtParser.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

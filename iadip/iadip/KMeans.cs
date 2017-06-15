@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace iadip
 {
     class KMeans : IClusterize
     {
+        const int ElementsPerCluster = 100;
         private static Random random = new Random(0);
 
         private class ApartamentCalculated
         {
             public Apartament SourceApartament;
             public ClusterDataLerp LerpValue;
-            public double DistanceToAverage;
             public Center ClusterCenter;
         }
 
@@ -30,68 +28,41 @@ namespace iadip
             }
         }
 
-        private List<Apartament> sourceData;
-        private List<ClusterData> clusterData;
-        private ClusterData min;
-        private ClusterData max;
-        private ClusterDataLerp average;
-        private ClusterDataLerp averageLerp;
-        private List<ClusterDataLerp> lerpValues;
-        private List<ApartamentCalculated> calculated;
-        private List<Center> centers;
-
         public List<Cluster> Clasterize(List<Apartament> apartaments)
         {
-            StringBuilder log = new StringBuilder();
-            sourceData = apartaments;
-            clusterData = apartaments.ToClusterData();
-            foreach (var a in clusterData)
-                log.AppendLine(a.ToString());
+            List<ClusterData> clusterData = apartaments.ToClusterData();
+            ClusterData min = clusterData.ClusterMin();
+            ClusterData max = clusterData.ClusterMax();
+            ClusterDataLerp average = ClusterDataExtension.ClusterAverage(min, max);
+            ClusterDataLerp averageLerp = average.Lerp(min, max);
 
-            min = clusterData.ClusterMin();
-            max = clusterData.ClusterMax();
-            average = ClusterDataExtension.ClusterAverage(min, max);
+            List<ClusterDataLerp> lerpValues = clusterData.Select(c => c.Lerp(min, max)).ToList();
 
-            // Взяли относительное среднее - всё по 0.5
-            averageLerp = average.Lerp(min, max);
-
-            log.AppendLine("min " + min.ToString());
-            log.AppendLine("max " + max.ToString());
-            log.AppendLine("average " + average.ToString());
-            log.AppendLine("average lerp: " + averageLerp.ToString());
-
-            lerpValues = clusterData.Select(c => c.Lerp(min, max)).ToList();
-
-            calculated = new List<ApartamentCalculated>();
-            for (int i = 0; i < sourceData.Count; i++)
+            List<ApartamentCalculated> calculated = new List<ApartamentCalculated>();
+            for (int i = 0; i < apartaments.Count; i++)
             {
                 calculated.Add(new ApartamentCalculated()
                 {
-                    SourceApartament = sourceData[i],
+                    SourceApartament = apartaments[i],
                     LerpValue = lerpValues[i],
-                    // Дистанция между текущим относительным и средним относительным
-                    DistanceToAverage = ClusterDataExtension.Distance(lerpValues[i], averageLerp)
                 });
             }
 
-            calculated = calculated.OrderBy(c => c.DistanceToAverage).ToList();
+            calculated = calculated.OrderBy(c => ClusterDataExtension.Distance(c.LerpValue, averageLerp)).ToList();
 
-            foreach (var i in calculated)
-                log.AppendLine( string.Format("Dist: {0:0.00}; ", i.DistanceToAverage) + i.LerpValue.ToString());
-
-            // Берём центр в середине и несколько самых дальних
-            centers = new List<Center>();
+            List<Center> centers = new List<Center>();
             centers.Add(new Center(calculated[0].LerpValue));
-            int clusters = (calculated.Count - 1) / 3;
+            int clusters = (calculated.Count - 1) / ElementsPerCluster;
             for (int i = 0; i < clusters; i++)
-            {
                 centers.Add(new Center(calculated[calculated.Count - 1 - i].LerpValue));
-            }
 
             bool wasChanges = true;
 
-            while (wasChanges)
+            int loops = 0; // Не известно как пофиксить зацикленность. Возможно никак, ведь кластеры могут смещаться как угодно и ходить кругами.
+            
+            while (wasChanges && loops < 100)
             {
+                loops++;
                 wasChanges = false;
 
                 List<Center> toRecalculateCenters = new List<Center>();
@@ -131,25 +102,20 @@ namespace iadip
                     }
                 }
 
-                for (int i = 0; i < toRecalculateCenters.Count; i++)
-                {
-                    Center c = toRecalculateCenters[i];
-                    Recalculate(c);
-                }
+                foreach (var i in toRecalculateCenters)
+                    Recalculate(i);
             }
 
+            List<Cluster> resultClusters = new List<Cluster>();
             foreach (var i in centers)
             {
-                log.AppendLine("Cluster: " + i.Coords.ToString());
-                foreach (var j in i.Rows)
-                {
-                    log.AppendLine(j.LerpValue.ToString());
-                }
+                Cluster c = new Cluster();
+                c.Apartaments = i.Rows.Select(r => r.SourceApartament).ToList();
+                c.Center = i.Coords; // Сделать абсолютное значение вместо нормы.
+                resultClusters.Add(c);
             }
 
-            Debug.Print(log.ToString());
-
-            return null;
+            return resultClusters;
         }
         
         private void Recalculate(Center c)
@@ -164,29 +130,5 @@ namespace iadip
 
             c.Coords = center;
         }
-
-        public static void Test()
-        {
-            List<Apartament> apartaments = new List<Apartament>();
-
-            for (int i = 0; i < 10; i++)
-            {
-                Apartament a1 = new Apartament();
-                a1.City = "";
-                a1.Company = "";
-                a1.Data = new ClusterData()
-                {
-                    AreaSize = random.Next(1, 100),
-                    BathroomsCount = random.Next(0, 1),
-                    Cost = random.Next(0, 1),
-                    RoomsCount = random.Next(0, 1)
-                };
-                a1.Id = i;
-                apartaments.Add(a1);
-            }
-
-            KMeans k = new KMeans();
-            List<Cluster> c = k.Clasterize(apartaments);
-        } 
     }
 }

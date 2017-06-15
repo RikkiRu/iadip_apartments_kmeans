@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,21 @@ namespace iadip {
             dialogOpenDataFile.ShowDialog();
         }
 
-        private void dialogOpenDataFile_FileOk(object sender, CancelEventArgs e) {
+        private void dialogOpenDataFile_FileOk(object sender, CancelEventArgs e)
+        {
             IParser parser = new TxtParser();
             List<Apartament> apartments = parser.ReadFile(dialogOpenDataFile.FileName);
+
+            // Прикрутить отрисовывалку результатов, потому что ничего не видно
+            var clusters = new KMeans().Clasterize(apartments);
+
+            foreach (var cluster in clusters)
+            {
+                Debug.WriteLine(cluster.Center);
+
+                foreach (var r in cluster.Apartaments)
+                    Debug.WriteLine(r);
+            }
         }
 
         private void bTestEstimate_Click(object sender, EventArgs e) {

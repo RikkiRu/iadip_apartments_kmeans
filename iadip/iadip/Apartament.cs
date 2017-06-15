@@ -15,7 +15,7 @@ namespace iadip
 
         public override string ToString()
         {
-            return string.Format("Apartament {0}. City: {1}, Company: {2}, " + Data.ToString());
+            return string.Format("Apartament {0}", Data.ToString());
         }
 
         public Apartament() {

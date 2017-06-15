@@ -10,18 +10,16 @@ namespace iadip
         public double AreaSize;
         public double RoomsCount;
         public double BathroomsCount;
-        public double TotalAverage;
 
         public override string ToString()
         {
             return
                 string.Format(
-                    "ClusterDataLerp. Cost: {0:0.00}, AreaSize: {1:0.00}, RoomsCount: {2:0.00}, BathroomsCount: {3:0.00}, TotalAverage: {4:0.00}",
+                    "ClusterDataLerp. Cost: {0:0.00}, AreaSize: {1:0.00}, RoomsCount: {2:0.00}, BathroomsCount: {3:0.00}",
                     Cost,
                     AreaSize,
                     RoomsCount,
-                    BathroomsCount,
-                    TotalAverage
+                    BathroomsCount
                     );
         }
     }
@@ -40,7 +38,6 @@ namespace iadip
             lerp.AreaSize = source.AreaSize;
             lerp.RoomsCount = source.RoomsCount;
             lerp.BathroomsCount = source.BathroomsCount;
-            lerp.TotalAverage = source.TotalAverage;
             return lerp;
         }
 
@@ -57,11 +54,14 @@ namespace iadip
         public static ClusterDataLerp Lerp(this ClusterDataLerp source, ClusterData min, ClusterData max)
         {
             ClusterDataLerp lerp = new ClusterDataLerp();
-            lerp.Cost = (double)(source.Cost - min.Cost) / (double)(max.Cost - min.Cost);
-            lerp.AreaSize = (double)(source.AreaSize - min.AreaSize) / (double)(max.AreaSize - min.AreaSize);
-            lerp.RoomsCount = (double)(source.RoomsCount - min.RoomsCount) / (double)(max.RoomsCount - min.RoomsCount);
-            lerp.BathroomsCount = (double)(source.BathroomsCount - min.BathroomsCount) / (double)(max.BathroomsCount - min.BathroomsCount);
-            lerp.TotalAverage = (lerp.Cost + lerp.AreaSize + lerp.RoomsCount + lerp.BathroomsCount) / 4;
+            double dCost = max.Cost == min.Cost ? 1 : max.Cost - min.Cost; 
+            lerp.Cost = (double)(source.Cost - min.Cost) / dCost;
+            double dArea = max.AreaSize == min.AreaSize ? 1 : max.AreaSize - min.AreaSize;
+            lerp.AreaSize = (double)(source.AreaSize - min.AreaSize) / dArea;
+            double dRooms = max.RoomsCount == min.RoomsCount ? 1 : max.RoomsCount - min.RoomsCount;
+            lerp.RoomsCount = (double)(source.RoomsCount - min.RoomsCount) / dRooms;
+            double dBath = max.BathroomsCount == min.BathroomsCount ? 1 : max.BathroomsCount - min.BathroomsCount;
+            lerp.BathroomsCount = (double)(source.BathroomsCount - min.BathroomsCount) / dBath;
             return lerp;
         }
 
@@ -80,6 +80,11 @@ namespace iadip
         }
 
         public static ClusterDataLerp ClusterAverage(ClusterData min, ClusterData max)
+        {
+            return ClusterAverage(min.ToLerp(), max.ToLerp());
+        }
+
+        public static ClusterDataLerp ClusterAverage(ClusterDataLerp min, ClusterDataLerp max)
         {
             return new ClusterDataLerp()
             {

@@ -82,13 +82,11 @@ namespace iadip
             // Берём центр в середине и несколько самых дальних
             centers = new List<Center>();
             centers.Add(new Center(calculated[0].LerpValue));
-            int clusters = (calculated.Count - 1) / 10;
+            int clusters = (calculated.Count - 1) / 3;
             for (int i = 0; i < clusters; i++)
             {
                 centers.Add(new Center(calculated[calculated.Count - 1 - i].LerpValue));
             }
-
-            Debug.Print(log.ToString());
 
             bool wasChanges = true;
 
@@ -126,32 +124,62 @@ namespace iadip
 
                         row.ClusterCenter = c;
                         wasChanges = true;
+                        c.Rows.Add(row);
 
                         if (!toRecalculateCenters.Contains(c))
                             toRecalculateCenters.Add(c);
                     }
                 }
+
+                for (int i = 0; i < toRecalculateCenters.Count; i++)
+                {
+                    Center c = toRecalculateCenters[i];
+                    Recalculate(c);
+                }
             }
 
+            foreach (var i in centers)
+            {
+                log.AppendLine("Cluster: " + i.Coords.ToString());
+                foreach (var j in i.Rows)
+                {
+                    log.AppendLine(j.LerpValue.ToString());
+                }
+            }
+
+            Debug.Print(log.ToString());
 
             return null;
+        }
+        
+        private void Recalculate(Center c)
+        {
+            if (c.Rows.Count < 1)
+                return;
+
+            ClusterDataLerp center = c.Rows[0].LerpValue;
+
+            for (int i=1; i<c.Rows.Count; i++)
+                center = ClusterDataExtension.ClusterAverage(center, c.Rows[i].LerpValue);
+
+            c.Coords = center;
         }
 
         public static void Test()
         {
             List<Apartament> apartaments = new List<Apartament>();
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Apartament a1 = new Apartament();
-                a1.City = "Г" + random.Next(0, 4);
-                a1.Company = "К" + random.Next(0, 4);
+                a1.City = "";
+                a1.Company = "";
                 a1.Data = new ClusterData()
                 {
-                    AreaSize = random.Next(50, 100),
-                    BathroomsCount = random.Next(0, 4),
-                    Cost = random.Next(50, 100),
-                    RoomsCount = random.Next(1, 10)
+                    AreaSize = random.Next(1, 100),
+                    BathroomsCount = random.Next(0, 1),
+                    Cost = random.Next(0, 1),
+                    RoomsCount = random.Next(0, 1)
                 };
                 a1.Id = i;
                 apartaments.Add(a1);

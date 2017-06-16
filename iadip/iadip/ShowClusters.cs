@@ -53,13 +53,15 @@ namespace iadip
                 r = table.NewRow();
                 r[keyCluster] = "CENTER";
                 r[keyId] = i;
-                r[keyAreaSize] = c.Center.AreaSize;
-                r[keyBathrooms] = c.Center.BathroomsCount;
-                r[keyCost] = c.Center.Cost;
-                r[keyRooms] = c.Center.RoomsCount;
+                r[keyAreaSize] = string.Format("{0:0.00}", c.Center.AreaSize);
+                r[keyBathrooms] = string.Format("{0:0.00}", c.Center.BathroomsCount);
+                r[keyCost] = string.Format("{0:0.00}", c.Center.Cost);
+                r[keyRooms] = string.Format("{0:0.00}", c.Center.RoomsCount);
+                r[keyCity] = "-";
+                r[keyCompany] = "-";
                 table.Rows.Add(r);
 
-                for(int j=0; j<c.Apartaments.Count; j++)
+                for (int j = 0; j < c.Apartaments.Count; j++)
                 {
                     var a = c.Apartaments[j];
                     var data = a.Data;
@@ -75,8 +77,10 @@ namespace iadip
                     r[keyCompany] = a.Company;
                     table.Rows.Add(r);
                 }
-            }
 
+                r = table.NewRow();
+                table.Rows.Add(r);
+            }
             
             return table;
         }

@@ -92,6 +92,7 @@
             this.Controls.Add(this.bTestEstimate);
             this.Controls.Add(this.bLoadData);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ИАДиП Архиреев Солдаткин";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace iadip
 {
-    class ClusterDataLerp
+    public class ClusterDataLerp
     {
         public double Cost;
         public double AreaSize;

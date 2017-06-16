@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iadip
 {
-    class ClusterData
+    public class ClusterData
     {
         public double Cost;
         public int AreaSize;

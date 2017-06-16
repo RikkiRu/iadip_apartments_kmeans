@@ -32,13 +32,14 @@
             this.dialogOpenDataFile = new System.Windows.Forms.OpenFileDialog();
             this.bTestEstimate = new System.Windows.Forms.Button();
             this.bBeginClasterize = new System.Windows.Forms.Button();
+            this.btnShowClusters = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bLoadData
             // 
-            this.bLoadData.Location = new System.Drawing.Point(81, 31);
+            this.bLoadData.Location = new System.Drawing.Point(12, 12);
             this.bLoadData.Name = "bLoadData";
-            this.bLoadData.Size = new System.Drawing.Size(189, 117);
+            this.bLoadData.Size = new System.Drawing.Size(106, 26);
             this.bLoadData.TabIndex = 0;
             this.bLoadData.Text = "Load Data";
             this.bLoadData.UseVisualStyleBackColor = true;
@@ -52,9 +53,9 @@
             // 
             // bTestEstimate
             // 
-            this.bTestEstimate.Location = new System.Drawing.Point(81, 207);
+            this.bTestEstimate.Location = new System.Drawing.Point(252, 14);
             this.bTestEstimate.Name = "bTestEstimate";
-            this.bTestEstimate.Size = new System.Drawing.Size(189, 23);
+            this.bTestEstimate.Size = new System.Drawing.Size(102, 23);
             this.bTestEstimate.TabIndex = 1;
             this.bTestEstimate.Text = "TestEstimate";
             this.bTestEstimate.UseVisualStyleBackColor = true;
@@ -62,25 +63,36 @@
             // 
             // bBeginClasterize
             // 
-            this.bBeginClasterize.Location = new System.Drawing.Point(81, 154);
+            this.bBeginClasterize.Location = new System.Drawing.Point(124, 12);
             this.bBeginClasterize.Name = "bBeginClasterize";
-            this.bBeginClasterize.Size = new System.Drawing.Size(189, 32);
+            this.bBeginClasterize.Size = new System.Drawing.Size(122, 26);
             this.bBeginClasterize.TabIndex = 2;
             this.bBeginClasterize.Text = "Begin Clasterize";
             this.bBeginClasterize.UseVisualStyleBackColor = true;
             this.bBeginClasterize.Visible = false;
             this.bBeginClasterize.Click += new System.EventHandler(this.bBeginClasterize_Click);
             // 
+            // btnShowClusters
+            // 
+            this.btnShowClusters.Location = new System.Drawing.Point(124, 44);
+            this.btnShowClusters.Name = "btnShowClusters";
+            this.btnShowClusters.Size = new System.Drawing.Size(122, 29);
+            this.btnShowClusters.TabIndex = 3;
+            this.btnShowClusters.Text = "Show clusters";
+            this.btnShowClusters.UseVisualStyleBackColor = true;
+            this.btnShowClusters.Click += new System.EventHandler(this.btnShowClusters_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 249);
+            this.ClientSize = new System.Drawing.Size(370, 249);
+            this.Controls.Add(this.btnShowClusters);
             this.Controls.Add(this.bBeginClasterize);
             this.Controls.Add(this.bTestEstimate);
             this.Controls.Add(this.bLoadData);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ИАДиП Архиреев Солдаткин";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
 
@@ -92,6 +104,7 @@
         private System.Windows.Forms.OpenFileDialog dialogOpenDataFile;
         private System.Windows.Forms.Button bTestEstimate;
         private System.Windows.Forms.Button bBeginClasterize;
+        private System.Windows.Forms.Button btnShowClusters;
     }
 }
 

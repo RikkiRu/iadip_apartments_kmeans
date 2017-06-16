@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iadip
 {
-    class Apartament
+    public class Apartament
     {
         public ClusterData Data;
         public int Id;

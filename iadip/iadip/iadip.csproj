@@ -60,9 +60,9 @@
     <Compile Include="IClusterize.cs" />
     <Compile Include="IClusterOutput.cs" />
     <Compile Include="IEstimator.cs" />
+    <Compile Include="KMeansV2.cs" />
     <Compile Include="Parser\IParser.cs" />
     <Compile Include="IResultShower.cs" />
-    <Compile Include="KMeans.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleEstimator.cs" />

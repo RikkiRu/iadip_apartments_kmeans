@@ -34,22 +34,27 @@
             this.gridResultCluster.AllowUserToDeleteRows = false;
             this.gridResultCluster.AllowUserToResizeColumns = false;
             this.gridResultCluster.AllowUserToResizeRows = false;
+            this.gridResultCluster.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridResultCluster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridResultCluster.Dock = System.Windows.Forms.DockStyle.Top;
             this.gridResultCluster.Location = new System.Drawing.Point(0, 0);
             this.gridResultCluster.Name = "gridResultCluster";
             this.gridResultCluster.ReadOnly = true;
-            this.gridResultCluster.Size = new System.Drawing.Size(746, 44);
+            this.gridResultCluster.RowHeadersVisible = false;
+            this.gridResultCluster.Size = new System.Drawing.Size(745, 44);
             this.gridResultCluster.TabIndex = 0;
             // 
             // tbResult
             // 
             this.tbResult.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tbResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbResult.Location = new System.Drawing.Point(0, 51);
+            this.tbResult.ForeColor = System.Drawing.Color.White;
+            this.tbResult.Location = new System.Drawing.Point(0, 44);
             this.tbResult.Multiline = true;
             this.tbResult.Name = "tbResult";
             this.tbResult.ReadOnly = true;
-            this.tbResult.Size = new System.Drawing.Size(746, 161);
+            this.tbResult.Size = new System.Drawing.Size(745, 169);
             this.tbResult.TabIndex = 1;
             // 
             // ShowEstematedResult

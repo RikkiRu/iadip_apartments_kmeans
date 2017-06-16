@@ -56,7 +56,7 @@
             this.Controls.Add(this.grid);
             this.Name = "ShowClusters";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Clusters";
+            this.Text = "Таблица";
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

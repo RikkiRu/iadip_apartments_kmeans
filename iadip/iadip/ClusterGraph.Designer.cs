@@ -202,7 +202,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ClusterGraph";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ClusterGraph";
+            this.Text = "Граф";
             this.Load += new System.EventHandler(this.ClusterGraph_Load);
             this.Resize += new System.EventHandler(this.ClusterGraph_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

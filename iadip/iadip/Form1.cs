@@ -23,9 +23,9 @@ namespace iadip {
 
         private void dialogOpenDataFile_FileOk(object sender, CancelEventArgs e)
         {
-            Text = "Reading file...";
+            Text = "Чтение файла...";
             apartments = parser.ReadFile(dialogOpenDataFile.FileName);
-            Text = "File readed";
+            Text = "Файл прочитан";
         }
 
         private void bTestEstimate_Click(object sender, EventArgs e) {
@@ -68,8 +68,8 @@ namespace iadip {
             }
         }
         
-        private void offClasterizationBtn() { bBeginClasterize.Visible = false; }
-        private void onClasterizationBtn() { bBeginClasterize.Visible = true; }
+        private void offClasterizationBtn() { bBeginClasterize.Enabled = false; }
+        private void onClasterizationBtn() { bBeginClasterize.Enabled = true; }
 
         private void bBeginClasterize_Click(object sender, EventArgs e)
         {
@@ -79,9 +79,9 @@ namespace iadip {
                 return;
             }
 
-            Text = "Clusterizing...";
+            Text = "Кластеризация...";
             clusters = clusterize.Clasterize(apartments);
-            Text = "Clusterized";
+            Text = "Кластеризация завершена";
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {

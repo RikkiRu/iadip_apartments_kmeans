@@ -29,47 +29,29 @@ namespace iadip {
         }
 
         private void bTestEstimate_Click(object sender, EventArgs e) {
-            double[] costs = new double [1000];
-            for (int i = 0; i < costs.Length; i++) {
-                costs[i] = i;
+            if (clusters == null || clusters.Count < 1) {
+                MessageBox.Show("Кластеры отсутствуют");
+                return;
             }
-            List<Cluster> clusters = new List<Cluster>();
-            clusters.Add(new Cluster() {
-                Center = new ClusterDataLerp() {
-                    Cost = 500
-                }
-            });
-            clusters.Add(new Cluster() {
-                Center = new ClusterDataLerp() {
-                    Cost = 700
-                }
-            });
-            clusters.Add(new Cluster() {
-                Center = new ClusterDataLerp() {
-                    Cost = 100
-                }
-            });
-            clusters.Add(new Cluster() {
-                Center = new ClusterDataLerp() {
-                    Cost = 300
-                }
-            });
-            clusters.Add(new Cluster() {
-                Center = new ClusterDataLerp() {
-                    Cost = 900
-                }
-            });
-            IEstimator estimator = new SimpleEstimator();
-            Cluster result = new Cluster();
-            Dictionary<double, double> dict = new Dictionary<double, double>();
-            foreach (var i in costs) {
-                result = estimator.Estimate(clusters, new SourceData() { Cost = i });
-                dict.Add(i, result.Center.Cost);
-            }
+            Hide();
+            SourceDataInput di = new SourceDataInput();
+            di.Init(clusters);
+            di.ShowDialog();
+            Show();
         }
         
-        private void offClasterizationBtn() { bBeginClasterize.Enabled = false; }
-        private void onClasterizationBtn() { bBeginClasterize.Enabled = true; }
+        private void offClasterizationBtn() {
+            bBeginClasterize.Enabled = false;
+            btnShowClusters.Enabled = false;
+            showClusterGraph.Enabled = false;
+            bTestEstimate.Enabled = false;
+        }
+        private void onClasterizationBtn() {
+            bBeginClasterize.Enabled = true;
+            btnShowClusters.Enabled = true;
+            showClusterGraph.Enabled = true;
+            bTestEstimate.Enabled = true;
+        }
 
         private void bBeginClasterize_Click(object sender, EventArgs e)
         {

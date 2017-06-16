@@ -41,7 +41,7 @@
             this.bLoadData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bLoadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bLoadData.Location = new System.Drawing.Point(35, 31);
-            this.bLoadData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bLoadData.Margin = new System.Windows.Forms.Padding(4);
             this.bLoadData.Name = "bLoadData";
             this.bLoadData.Size = new System.Drawing.Size(148, 68);
             this.bLoadData.TabIndex = 0;
@@ -58,9 +58,10 @@
             // bTestEstimate
             // 
             this.bTestEstimate.BackColor = System.Drawing.Color.AliceBlue;
+            this.bTestEstimate.Enabled = false;
             this.bTestEstimate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bTestEstimate.Location = new System.Drawing.Point(35, 107);
-            this.bTestEstimate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bTestEstimate.Margin = new System.Windows.Forms.Padding(4);
             this.bTestEstimate.Name = "bTestEstimate";
             this.bTestEstimate.Size = new System.Drawing.Size(148, 68);
             this.bTestEstimate.TabIndex = 1;
@@ -74,7 +75,7 @@
             this.bBeginClasterize.Enabled = false;
             this.bBeginClasterize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bBeginClasterize.Location = new System.Drawing.Point(192, 31);
-            this.bBeginClasterize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bBeginClasterize.Margin = new System.Windows.Forms.Padding(4);
             this.bBeginClasterize.Name = "bBeginClasterize";
             this.bBeginClasterize.Size = new System.Drawing.Size(195, 68);
             this.bBeginClasterize.TabIndex = 2;
@@ -85,9 +86,10 @@
             // btnShowClusters
             // 
             this.btnShowClusters.BackColor = System.Drawing.Color.Thistle;
+            this.btnShowClusters.Enabled = false;
             this.btnShowClusters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowClusters.Location = new System.Drawing.Point(293, 107);
-            this.btnShowClusters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnShowClusters.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowClusters.Name = "btnShowClusters";
             this.btnShowClusters.Size = new System.Drawing.Size(93, 68);
             this.btnShowClusters.TabIndex = 3;
@@ -98,9 +100,10 @@
             // showClusterGraph
             // 
             this.showClusterGraph.BackColor = System.Drawing.Color.Thistle;
+            this.showClusterGraph.Enabled = false;
             this.showClusterGraph.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.showClusterGraph.Location = new System.Drawing.Point(192, 107);
-            this.showClusterGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showClusterGraph.Margin = new System.Windows.Forms.Padding(4);
             this.showClusterGraph.Name = "showClusterGraph";
             this.showClusterGraph.Size = new System.Drawing.Size(93, 68);
             this.showClusterGraph.TabIndex = 4;
@@ -120,7 +123,7 @@
             this.Controls.Add(this.bTestEstimate);
             this.Controls.Add(this.bLoadData);
             this.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ИАДиП Архиреев Солдаткин";

@@ -6,9 +6,6 @@ namespace iadip {
     class SimpleEstimator : IEstimator {
 
         public Cluster Estimate(List<Cluster> clusters, SourceData sourceData) {
-            if (clusters == null) {
-                return null;
-            }
 
             Cluster resultCluster = new Cluster();
             double minDistanceBetweenDots = double.MaxValue;

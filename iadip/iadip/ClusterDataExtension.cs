@@ -60,5 +60,33 @@ namespace iadip
                 BathroomsCount = bathrooms
             };
         }
+
+        public static ClusterData ClusterMax(this List<Apartament> data) {
+            double cost = data.Max(c => c.Data.Cost);
+            int area = data.Max(c => c.Data.AreaSize);
+            int rooms = data.Max(c => c.Data.RoomsCount);
+            int bathrooms = data.Max(c => c.Data.BathroomsCount);
+
+            return new ClusterData() {
+                Cost = cost,
+                AreaSize = area,
+                RoomsCount = rooms,
+                BathroomsCount = bathrooms
+            };
+        }
+
+        public static ClusterData ClusterMin(this List<Apartament> data) {
+            double cost = data.Min(c => c.Data.Cost);
+            int area = data.Min(c => c.Data.AreaSize);
+            int rooms = data.Min(c => c.Data.RoomsCount);
+            int bathrooms = data.Min(c => c.Data.BathroomsCount);
+
+            return new ClusterData() {
+                Cost = cost,
+                AreaSize = area,
+                RoomsCount = rooms,
+                BathroomsCount = bathrooms
+            };
+        }  
     }
 }

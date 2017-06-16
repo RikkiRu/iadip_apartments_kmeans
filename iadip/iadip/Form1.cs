@@ -97,9 +97,11 @@ namespace iadip {
                 return;
             }
 
+            Hide();
             ShowClusters w = new ShowClusters();
             w.Init(clusters);
             w.ShowDialog();
+            Show();
         }
     }
 }

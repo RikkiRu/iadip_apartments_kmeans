@@ -45,16 +45,17 @@
             this.grid.ShowCellToolTips = false;
             this.grid.ShowEditingIcon = false;
             this.grid.ShowRowErrors = false;
-            this.grid.Size = new System.Drawing.Size(486, 248);
+            this.grid.Size = new System.Drawing.Size(774, 297);
             this.grid.TabIndex = 1;
             // 
             // ShowClusters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 248);
+            this.ClientSize = new System.Drawing.Size(774, 297);
             this.Controls.Add(this.grid);
             this.Name = "ShowClusters";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clusters";
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);

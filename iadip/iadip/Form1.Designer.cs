@@ -33,6 +33,7 @@
             this.bTestEstimate = new System.Windows.Forms.Button();
             this.bBeginClasterize = new System.Windows.Forms.Button();
             this.btnShowClusters = new System.Windows.Forms.Button();
+            this.showClusterGraph = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bLoadData
@@ -78,15 +79,26 @@
             this.btnShowClusters.Name = "btnShowClusters";
             this.btnShowClusters.Size = new System.Drawing.Size(122, 29);
             this.btnShowClusters.TabIndex = 3;
-            this.btnShowClusters.Text = "Show clusters";
+            this.btnShowClusters.Text = "Show clusters table";
             this.btnShowClusters.UseVisualStyleBackColor = true;
             this.btnShowClusters.Click += new System.EventHandler(this.btnShowClusters_Click);
+            // 
+            // showClusterGraph
+            // 
+            this.showClusterGraph.Location = new System.Drawing.Point(124, 79);
+            this.showClusterGraph.Name = "showClusterGraph";
+            this.showClusterGraph.Size = new System.Drawing.Size(122, 30);
+            this.showClusterGraph.TabIndex = 4;
+            this.showClusterGraph.Text = "Show clusters graph";
+            this.showClusterGraph.UseVisualStyleBackColor = true;
+            this.showClusterGraph.Click += new System.EventHandler(this.showClusterGraph_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(370, 249);
+            this.Controls.Add(this.showClusterGraph);
             this.Controls.Add(this.btnShowClusters);
             this.Controls.Add(this.bBeginClasterize);
             this.Controls.Add(this.bTestEstimate);
@@ -106,6 +118,7 @@
         private System.Windows.Forms.Button bTestEstimate;
         private System.Windows.Forms.Button bBeginClasterize;
         private System.Windows.Forms.Button btnShowClusters;
+        private System.Windows.Forms.Button showClusterGraph;
     }
 }
 

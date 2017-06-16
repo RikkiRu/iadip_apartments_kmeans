@@ -103,5 +103,20 @@ namespace iadip {
             w.ShowDialog();
             Show();
         }
+
+        private void showClusterGraph_Click(object sender, EventArgs e)
+        {
+            if (clusters == null || clusters.Count < 1)
+            {
+                MessageBox.Show("Кластеров нет");
+                return;
+            }
+
+            Hide();
+            ClusterGraph w = new ClusterGraph();
+            w.Init(clusters);
+            w.ShowDialog();
+            Show();
+        }
     }
 }

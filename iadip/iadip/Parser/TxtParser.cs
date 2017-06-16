@@ -10,7 +10,7 @@ namespace iadip {
         AreaSize = 2,
         RoomsCount = 3,
         BathroomsCount = 4,
-        City = 5,
+        City = 6,
         Company = 8
     }
 

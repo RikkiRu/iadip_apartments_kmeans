@@ -32,22 +32,24 @@ namespace iadip {
                 while (!sr.EndOfStream) {
                     tempString = sr.ReadLine();
                     tempStringArray = tempString.Split('\t');
-                    
-                    for(int i = 0; i < tempStringArray.Length; i++) {
-                        bool isParsed = Double.TryParse(tempStringArray[i], out parsedResult);
-                        switch (i) {
-                            case (int)ApartmentsParametres.Id:             tempApartment.Id =                  isParsed ? (int)parsedResult : 0; break;
-                            case (int)ApartmentsParametres.Cost:           tempApartment.Data.Cost =           isParsed ? parsedResult : 0; break;
-                            case (int)ApartmentsParametres.AreaSize:       tempApartment.Data.AreaSize =       isParsed ? (int)parsedResult : 0; break;
-                            case (int)ApartmentsParametres.RoomsCount:     tempApartment.Data.RoomsCount =     isParsed ? (int)parsedResult : 0; break;
-                            case (int)ApartmentsParametres.BathroomsCount: tempApartment.Data.BathroomsCount = isParsed ? (int)parsedResult : 0; break;
-                            case (int)ApartmentsParametres.City:           tempApartment.City = tempStringArray[i]; break;
-                            case (int)ApartmentsParametres.Company:        tempApartment.Company = tempStringArray[i]; break;
-                        }
-                        
-                    }
 
-                    apartments.Add(new Apartament(tempApartment));
+                    if (Double.TryParse(tempStringArray[0], out parsedResult)) {
+                        for (int i = 0; i < tempStringArray.Length; i++) {
+                            bool isParsed = Double.TryParse(tempStringArray[i], out parsedResult);
+                            switch (i) {
+                                case (int)ApartmentsParametres.Id: tempApartment.Id = isParsed ? (int)parsedResult : 0; break;
+                                case (int)ApartmentsParametres.Cost: tempApartment.Data.Cost = isParsed ? parsedResult : 0; break;
+                                case (int)ApartmentsParametres.AreaSize: tempApartment.Data.AreaSize = isParsed ? (int)parsedResult : 0; break;
+                                case (int)ApartmentsParametres.RoomsCount: tempApartment.Data.RoomsCount = isParsed ? (int)parsedResult : 0; break;
+                                case (int)ApartmentsParametres.BathroomsCount: tempApartment.Data.BathroomsCount = isParsed ? (int)parsedResult : 0; break;
+                                case (int)ApartmentsParametres.City: tempApartment.City = tempStringArray[i]; break;
+                                case (int)ApartmentsParametres.Company: tempApartment.Company = tempStringArray[i]; break;
+                            }
+
+                        }
+
+                        apartments.Add(new Apartament(tempApartment));
+                    }                    
                 }
             }
 

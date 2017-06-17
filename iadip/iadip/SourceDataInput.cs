@@ -34,7 +34,7 @@ namespace iadip {
 
                 Hide();
                 ShowEstematedResult ser = new ShowEstematedResult();
-                ser.Init(estimator.Estimate(clustersForEstimator, data));
+                ser.Init(estimator.Estimate(clustersForEstimator, data), data);
                 ser.ShowDialog();
                 Show();
             }

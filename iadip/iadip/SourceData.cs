@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iadip
 {
-    class SourceData
+    public class SourceData
     {
         public double Cost;
     }

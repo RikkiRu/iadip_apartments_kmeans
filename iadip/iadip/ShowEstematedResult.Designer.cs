@@ -41,7 +41,7 @@
             this.gridResultCluster.Name = "gridResultCluster";
             this.gridResultCluster.ReadOnly = true;
             this.gridResultCluster.RowHeadersVisible = false;
-            this.gridResultCluster.Size = new System.Drawing.Size(745, 44);
+            this.gridResultCluster.Size = new System.Drawing.Size(771, 44);
             this.gridResultCluster.TabIndex = 0;
             // 
             // tbResult
@@ -54,14 +54,14 @@
             this.tbResult.Multiline = true;
             this.tbResult.Name = "tbResult";
             this.tbResult.ReadOnly = true;
-            this.tbResult.Size = new System.Drawing.Size(745, 169);
+            this.tbResult.Size = new System.Drawing.Size(771, 226);
             this.tbResult.TabIndex = 1;
             // 
             // ShowEstematedResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 213);
+            this.ClientSize = new System.Drawing.Size(771, 270);
             this.Controls.Add(this.tbResult);
             this.Controls.Add(this.gridResultCluster);
             this.Name = "ShowEstematedResult";

@@ -8,7 +8,7 @@ namespace iadip {
 
         IClusterize clusterize = new KMeansV2();
         IParser parser = new TxtParser();
-        List<Apartament> apartments;
+        public static List<Apartament> apartments;
         List<Cluster> clusters;
 
         public Form1() {

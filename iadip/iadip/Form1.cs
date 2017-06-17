@@ -45,12 +45,15 @@ namespace iadip {
             btnShowClusters.Enabled = false;
             showClusterGraph.Enabled = false;
             bTestEstimate.Enabled = false;
+            btnSummary.Enabled = false;
         }
+
         private void onClasterizationBtn() {
             bBeginClasterize.Enabled = true;
             btnShowClusters.Enabled = true;
             showClusterGraph.Enabled = true;
             bTestEstimate.Enabled = true;
+            btnSummary.Enabled = true;
         }
 
         private void bBeginClasterize_Click(object sender, EventArgs e)
@@ -96,6 +99,21 @@ namespace iadip {
 
             Hide();
             ClusterGraph w = new ClusterGraph();
+            w.Init(clusters);
+            w.ShowDialog();
+            Show();
+        }
+
+        private void btnSummary_Click(object sender, EventArgs e)
+        {
+            if (clusters == null || clusters.Count < 1)
+            {
+                MessageBox.Show("Кластеров нет");
+                return;
+            }
+
+            Hide();
+            Summary w = new Summary();
             w.Init(clusters);
             w.ShowDialog();
             Show();

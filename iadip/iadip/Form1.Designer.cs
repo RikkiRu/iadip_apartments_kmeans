@@ -34,6 +34,7 @@
             this.bBeginClasterize = new System.Windows.Forms.Button();
             this.btnShowClusters = new System.Windows.Forms.Button();
             this.showClusterGraph = new System.Windows.Forms.Button();
+            this.btnSummary = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bLoadData
@@ -63,7 +64,7 @@
             this.bTestEstimate.Location = new System.Drawing.Point(35, 107);
             this.bTestEstimate.Margin = new System.Windows.Forms.Padding(4);
             this.bTestEstimate.Name = "bTestEstimate";
-            this.bTestEstimate.Size = new System.Drawing.Size(148, 68);
+            this.bTestEstimate.Size = new System.Drawing.Size(148, 74);
             this.bTestEstimate.TabIndex = 1;
             this.bTestEstimate.Text = "Оценить";
             this.bTestEstimate.UseVisualStyleBackColor = false;
@@ -91,9 +92,9 @@
             this.btnShowClusters.Location = new System.Drawing.Point(293, 107);
             this.btnShowClusters.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowClusters.Name = "btnShowClusters";
-            this.btnShowClusters.Size = new System.Drawing.Size(93, 68);
+            this.btnShowClusters.Size = new System.Drawing.Size(93, 33);
             this.btnShowClusters.TabIndex = 3;
-            this.btnShowClusters.Text = "Таблица";
+            this.btnShowClusters.Text = "Все данные";
             this.btnShowClusters.UseVisualStyleBackColor = false;
             this.btnShowClusters.Click += new System.EventHandler(this.btnShowClusters_Click);
             // 
@@ -105,11 +106,25 @@
             this.showClusterGraph.Location = new System.Drawing.Point(192, 107);
             this.showClusterGraph.Margin = new System.Windows.Forms.Padding(4);
             this.showClusterGraph.Name = "showClusterGraph";
-            this.showClusterGraph.Size = new System.Drawing.Size(93, 68);
+            this.showClusterGraph.Size = new System.Drawing.Size(93, 74);
             this.showClusterGraph.TabIndex = 4;
             this.showClusterGraph.Text = "Граф";
             this.showClusterGraph.UseVisualStyleBackColor = false;
             this.showClusterGraph.Click += new System.EventHandler(this.showClusterGraph_Click);
+            // 
+            // btnSummary
+            // 
+            this.btnSummary.BackColor = System.Drawing.Color.Thistle;
+            this.btnSummary.Enabled = false;
+            this.btnSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSummary.Location = new System.Drawing.Point(293, 148);
+            this.btnSummary.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSummary.Name = "btnSummary";
+            this.btnSummary.Size = new System.Drawing.Size(93, 33);
+            this.btnSummary.TabIndex = 5;
+            this.btnSummary.Text = "Сводка";
+            this.btnSummary.UseVisualStyleBackColor = false;
+            this.btnSummary.Click += new System.EventHandler(this.btnSummary_Click);
             // 
             // Form1
             // 
@@ -117,6 +132,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
             this.ClientSize = new System.Drawing.Size(431, 212);
+            this.Controls.Add(this.btnSummary);
             this.Controls.Add(this.showClusterGraph);
             this.Controls.Add(this.btnShowClusters);
             this.Controls.Add(this.bBeginClasterize);
@@ -140,6 +156,7 @@
         private System.Windows.Forms.Button bBeginClasterize;
         private System.Windows.Forms.Button btnShowClusters;
         private System.Windows.Forms.Button showClusterGraph;
+        private System.Windows.Forms.Button btnSummary;
     }
 }
 

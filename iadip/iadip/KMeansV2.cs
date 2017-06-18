@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 
 namespace iadip
 {
     class KMeansV2 : IClusterize
     {
-        const int ElementsPerCluster = 100;
-
         public List<Cluster> Clasterize(List<SourceDataRow> apartaments)
         {
             ClusterData globalMax = apartaments.Select(c => c.Data).ToList().ClusterMax();
             ClusterData globalCenter = GetCenter(apartaments.Select(c => c.Data.Clone()).ToList());
             apartaments = apartaments.OrderBy(c => OrderByDistance(c, globalCenter, globalMax)).ToList();
 
-            ClusterData[] centers = new ClusterData[apartaments.Count / ElementsPerCluster];
+            string elemsPerClusterStr = Localization.Instance.Get("param.kmeans.elemsPerCluster");
+            int elemsPerCluster = int.Parse(elemsPerClusterStr, CultureInfo.InvariantCulture.NumberFormat);
+
+            ClusterData[] centers = new ClusterData[apartaments.Count / elemsPerCluster];
             centers[0] = globalCenter;
             for (int i = 1; i < centers.Length; i++)
                 centers[i] = apartaments[apartaments.Count - 1 - i].Data.Clone();

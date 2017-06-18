@@ -5,6 +5,6 @@ namespace iadip
     public class Cluster
     {
         public ClusterData Center;
-        public List<Apartament> Apartaments;
+        public List<SourceDataRow> Apartaments;
     }
 }

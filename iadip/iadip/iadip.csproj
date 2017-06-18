@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Apartament.cs" />
+    <Compile Include="SourceDataRow.cs" />
     <Compile Include="Cluster.cs" />
     <Compile Include="ClusterData.cs" />
     <Compile Include="ClusterDataExtension.cs" />
@@ -85,7 +85,7 @@
     </Compile>
     <Compile Include="SimpleClusterOutput.cs" />
     <Compile Include="SimpleEstimator.cs" />
-    <Compile Include="SourceData.cs" />
+    <Compile Include="ClusterSearchOptions.cs" />
     <Compile Include="Parser\TxtParser.cs" />
     <Compile Include="SourceDataInput.cs">
       <SubType>Form</SubType>

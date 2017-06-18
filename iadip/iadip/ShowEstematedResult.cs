@@ -14,7 +14,7 @@ namespace iadip
             InitializeComponent();
         }
 
-        public void Init(Cluster cluster, SourceData sourceData) {            
+        public void Init(Cluster cluster, ClusterSearchOptions sourceData) {            
             gridResultCluster.DataSource = GetResultsTable(cluster);
 
             var calcResult = output.Calculate(cluster);
@@ -40,36 +40,36 @@ namespace iadip
                 "-Количество ванных комнат: {4} - {5}шт.\t\t\t-Количество ванных комнат: {10}шт.\n" + Environment.NewLine + Environment.NewLine +
                 "-Города: {6}\n" + Environment.NewLine +
                 "-Компании: {7}\n",
-                data.Min.AreaSize, data.Max.AreaSize, 
-                data.Min.RoomsCount, data.Max.RoomsCount,
-                data.Min.BathroomsCount, data.Max.BathroomsCount,
+                data.Min.P2, data.Max.P2, 
+                data.Min.P3, data.Max.P3,
+                data.Min.P4, data.Max.P4,
                 cities,
                 companies,
-                data.Average.AreaSize,
-                data.Average.RoomsCount,
-                data.Average.BathroomsCount                
+                data.Average.P2,
+                data.Average.P3,
+                data.Average.P4                
                 );
         }
 
-        void Mape(ClusterOutputData clusterData, SourceData sourceData, Cluster cluster)
+        void Mape(ClusterOutputData clusterData, ClusterSearchOptions sourceData, Cluster cluster)
         {
-            var e = cluster.Apartaments.FirstOrDefault(c => c.Data.Cost == sourceData.Cost);
+            var e = cluster.Apartaments.FirstOrDefault(c => c.Data.P1 == sourceData.P1);
 
             if (e == null)
                 return;
 
             // По центру
-            double centerMapeArea = Math.Abs(e.Data.AreaSize - cluster.Center.AreaSize) / e.Data.AreaSize * 100;
-            double centerMapeCost = Math.Abs(e.Data.Cost - cluster.Center.Cost) / e.Data.Cost * 100;
-            double centerMapeRooms = Math.Abs(e.Data.RoomsCount - cluster.Center.RoomsCount) / e.Data.RoomsCount * 100;
-            double centerMapeBaths = Math.Abs(e.Data.BathroomsCount - cluster.Center.BathroomsCount) / e.Data.BathroomsCount * 100;
+            double centerMapeArea = Math.Abs(e.Data.P2 - cluster.Center.P2) / e.Data.P2 * 100;
+            double centerMapeCost = Math.Abs(e.Data.P1 - cluster.Center.P1) / e.Data.P1 * 100;
+            double centerMapeRooms = Math.Abs(e.Data.P3 - cluster.Center.P3) / e.Data.P3 * 100;
+            double centerMapeBaths = Math.Abs(e.Data.P4 - cluster.Center.P4) / e.Data.P4 * 100;
             double centerAvg = (centerMapeArea + centerMapeCost + centerMapeRooms + centerMapeBaths) / 4;
 
             // По средним
-            double avgMapeArea = Math.Abs(e.Data.AreaSize - clusterData.Average.AreaSize) / e.Data.AreaSize * 100;
-            double avgMapeCost = Math.Abs(e.Data.Cost - clusterData.Average.Cost) / e.Data.Cost * 100;
-            double avgMapeRooms = Math.Abs(e.Data.RoomsCount - clusterData.Average.RoomsCount) / e.Data.RoomsCount * 100;
-            double avgMapeBaths = Math.Abs(e.Data.BathroomsCount - clusterData.Average.BathroomsCount) / e.Data.BathroomsCount * 100;
+            double avgMapeArea = Math.Abs(e.Data.P2 - clusterData.Average.P2) / e.Data.P2 * 100;
+            double avgMapeCost = Math.Abs(e.Data.P1 - clusterData.Average.P1) / e.Data.P1 * 100;
+            double avgMapeRooms = Math.Abs(e.Data.P3 - clusterData.Average.P3) / e.Data.P3 * 100;
+            double avgMapeBaths = Math.Abs(e.Data.P4 - clusterData.Average.P4) / e.Data.P4 * 100;
             double avgAvg = (avgMapeArea + avgMapeCost + avgMapeRooms + avgMapeBaths) / 4;
 
             StringBuilder b = new StringBuilder();
@@ -125,10 +125,10 @@ namespace iadip
 
             r = table.NewRow();
             r[keyCluster] = "CENTER";
-            r[keyAreaSize] = string.Format("{0:0.00}", cluster.Center.AreaSize);
-            r[keyBathrooms] = string.Format("{0:0.00}", cluster.Center.BathroomsCount);
-            r[keyCost] = string.Format("{0:0.00}", cluster.Center.Cost);
-            r[keyRooms] = string.Format("{0:0.00}", cluster.Center.RoomsCount);
+            r[keyAreaSize] = string.Format("{0:0.00}", cluster.Center.P2);
+            r[keyBathrooms] = string.Format("{0:0.00}", cluster.Center.P4);
+            r[keyCost] = string.Format("{0:0.00}", cluster.Center.P1);
+            r[keyRooms] = string.Format("{0:0.00}", cluster.Center.P3);
             r[keyCity] = "-";
             r[keyCompany] = "-";
             table.Rows.Add(r);

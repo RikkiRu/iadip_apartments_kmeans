@@ -24,7 +24,7 @@ namespace iadip
             int indexSmallCluster = -1;
             int elemtntsSmallCluster = int.MaxValue;
 
-            List<Apartament> all = new List<Apartament>();
+            List<SourceDataRow> all = new List<SourceDataRow>();
 
             for (int i = 0; i < clusters.Count; i++)
             {
@@ -67,35 +67,35 @@ namespace iadip
 
                 ClusterOutputData data = output.Calculate(c);
 
-                b.AppendFormat("Минимальная площадь {0}", data.Min.AreaSize);
+                b.AppendFormat("Минимальная площадь {0}", data.Min.P2);
                 b.AppendLine();
-                b.AppendFormat("Средняя площадь {0:0.00}", c.Center.AreaSize);
+                b.AppendFormat("Средняя площадь {0:0.00}", c.Center.P2);
                 b.AppendLine();
-                b.AppendFormat("Максимальная площадь {0}", data.Max.AreaSize);
-                b.AppendLine();
-                b.AppendLine();
-
-                b.AppendFormat("Минимальное число ванн {0}", data.Min.BathroomsCount);
-                b.AppendLine();
-                b.AppendFormat("Среднее число ванн {0:0.00}", c.Center.BathroomsCount);
-                b.AppendLine();
-                b.AppendFormat("Максимальное число ванн {0}", data.Max.BathroomsCount);
+                b.AppendFormat("Максимальная площадь {0}", data.Max.P2);
                 b.AppendLine();
                 b.AppendLine();
 
-                b.AppendFormat("Минимальная цена {0}", data.Min.Cost);
+                b.AppendFormat("Минимальное число ванн {0}", data.Min.P4);
                 b.AppendLine();
-                b.AppendFormat("Средняя цена {0:0.00}", c.Center.Cost);
+                b.AppendFormat("Среднее число ванн {0:0.00}", c.Center.P4);
                 b.AppendLine();
-                b.AppendFormat("Максимальная цена {0}", data.Max.Cost);
+                b.AppendFormat("Максимальное число ванн {0}", data.Max.P4);
                 b.AppendLine();
                 b.AppendLine();
 
-                b.AppendFormat("Минимальнаое число комнат {0}", data.Min.RoomsCount);
+                b.AppendFormat("Минимальная цена {0}", data.Min.P1);
                 b.AppendLine();
-                b.AppendFormat("Среднее число комнат {0:0.00}", c.Center.RoomsCount);
+                b.AppendFormat("Средняя цена {0:0.00}", c.Center.P1);
                 b.AppendLine();
-                b.AppendFormat("Максимальное число комнат {0}", data.Max.RoomsCount);
+                b.AppendFormat("Максимальная цена {0}", data.Max.P1);
+                b.AppendLine();
+                b.AppendLine();
+
+                b.AppendFormat("Минимальнаое число комнат {0}", data.Min.P3);
+                b.AppendLine();
+                b.AppendFormat("Среднее число комнат {0:0.00}", c.Center.P3);
+                b.AppendLine();
+                b.AppendFormat("Максимальное число комнат {0}", data.Max.P3);
                 b.AppendLine();
                 b.AppendLine();
             }
@@ -105,7 +105,7 @@ namespace iadip
             grid.DataSource = GetResultsTable(clusters, elements, all);
         }
 
-        DataTable GetResultsTable(List<Cluster> clusters, int totalElems, List<Apartament> all)
+        DataTable GetResultsTable(List<Cluster> clusters, int totalElems, List<SourceDataRow> all)
         {
             ClusterData globalMax = all.Select(c => c.Data).ToList().ClusterMax();
 
@@ -136,10 +136,10 @@ namespace iadip
                 r[keyElements] = string.Format("{0:0.00}% ({1})", percent, c.Apartaments.Count);
                 table.Rows.Add(r);
 
-                double relativeAreaSize = c.Center.AreaSize / globalMax.AreaSize;
-                double relativeBaths = c.Center.BathroomsCount / globalMax.BathroomsCount;
-                double relativeCost = c.Center.Cost / globalMax.Cost;
-                double relativeRooms = c.Center.RoomsCount / globalMax.RoomsCount;
+                double relativeAreaSize = c.Center.P2 / globalMax.P2;
+                double relativeBaths = c.Center.P4 / globalMax.P4;
+                double relativeCost = c.Center.P1 / globalMax.P1;
+                double relativeRooms = c.Center.P3 / globalMax.P3;
 
                 r[keyAreaSize] = GetLingvisticEstimate(relativeAreaSize, 0.3, 0.7, "Маленькая", "Средняя", "Большая");
                 r[keyBathrooms] = GetLingvisticEstimate(relativeBaths, 0.3, 0.7, "Мало", "Нормально", "Много");

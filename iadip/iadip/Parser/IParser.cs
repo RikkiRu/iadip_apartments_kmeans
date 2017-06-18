@@ -3,6 +3,6 @@
 namespace iadip {
 
     interface IParser {
-        List<Apartament> ReadFile(string path);
+        List<SourceDataRow> ReadFile(string path);
     }    
 }

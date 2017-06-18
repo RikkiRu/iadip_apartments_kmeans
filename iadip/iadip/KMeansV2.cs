@@ -8,7 +8,7 @@ namespace iadip
     {
         const int ElementsPerCluster = 100;
 
-        public List<Cluster> Clasterize(List<Apartament> apartaments)
+        public List<Cluster> Clasterize(List<SourceDataRow> apartaments)
         {
             ClusterData globalMax = apartaments.Select(c => c.Data).ToList().ClusterMax();
             ClusterData globalCenter = GetCenter(apartaments.Select(c => c.Data.Clone()).ToList());
@@ -81,7 +81,7 @@ namespace iadip
             List<Cluster> result = new List<Cluster>();
             for (int i = 0; i < centers.Length; i++)
             {
-                List<Apartament> rows = new List<Apartament>();
+                List<SourceDataRow> rows = new List<SourceDataRow>();
 
                 for (int k = 0; k < apartaments.Count; k++)
                 {
@@ -104,14 +104,14 @@ namespace iadip
         private ClusterData GetCenter(List<ClusterData> apartaments)
         {
             ClusterData allAverage = new ClusterData();
-            allAverage.AreaSize = apartaments.Sum(a => a.AreaSize) / apartaments.Count;
-            allAverage.BathroomsCount = apartaments.Sum(a => a.BathroomsCount) / apartaments.Count;
-            allAverage.Cost = apartaments.Sum(a => a.Cost) / apartaments.Count;
-            allAverage.RoomsCount = apartaments.Sum(a => a.RoomsCount) / apartaments.Count;
+            allAverage.P2 = apartaments.Sum(a => a.P2) / apartaments.Count;
+            allAverage.P4 = apartaments.Sum(a => a.P4) / apartaments.Count;
+            allAverage.P1 = apartaments.Sum(a => a.P1) / apartaments.Count;
+            allAverage.P3 = apartaments.Sum(a => a.P3) / apartaments.Count;
             return allAverage;
         }
 
-        private double OrderByDistance(Apartament a, ClusterData center, ClusterData max)
+        private double OrderByDistance(SourceDataRow a, ClusterData center, ClusterData max)
         {
             return ClusterDataExtension.Distance(a.Data.Clone(), center, max);
         }

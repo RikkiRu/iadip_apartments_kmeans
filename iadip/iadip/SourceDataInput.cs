@@ -23,8 +23,8 @@ namespace iadip
                 MessageBox.Show("Неверное значение, введите число");
                 return;
             } else {
-                SourceData data = new SourceData() {
-                    Cost = parsedValue
+                ClusterSearchOptions data = new ClusterSearchOptions() {
+                    P1 = parsedValue
                 };
 
                 Hide();

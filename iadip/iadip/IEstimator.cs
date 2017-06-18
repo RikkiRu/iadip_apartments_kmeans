@@ -3,6 +3,6 @@
 namespace iadip {
 
     interface IEstimator {
-        Cluster Estimate(List<Cluster> clusters, SourceData sourceData);
+        Cluster Estimate(List<Cluster> clusters, ClusterSearchOptions sourceData);
     }
 }

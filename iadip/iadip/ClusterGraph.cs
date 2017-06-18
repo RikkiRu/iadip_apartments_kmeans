@@ -33,8 +33,8 @@ namespace iadip
         {
             this.clusters = clusters;
 
-            xFunc = data => (double)data.Cost;
-            yFunc = data => (double)data.AreaSize;
+            xFunc = data => (double)data.P1;
+            yFunc = data => (double)data.P2;
             xFuncMax = xFunc;
             yFuncMax = yFunc;
 
@@ -43,7 +43,7 @@ namespace iadip
         
         private ClusterData GetMax()
         {
-            List<Apartament> all = new List<Apartament>();
+            List<SourceDataRow> all = new List<SourceDataRow>();
 
             foreach (var c in clusters)
                 all = all.Concat(c.Apartaments).ToList();
@@ -102,7 +102,7 @@ namespace iadip
 
         private void btnXCost_Click(object sender, EventArgs e)
         {
-            xFunc = data => (double)data.Cost;
+            xFunc = data => (double)data.P1;
             xFuncMax = xFunc;
             CreatePoints();
             Draw();
@@ -110,7 +110,7 @@ namespace iadip
 
         private void btnXArea_Click(object sender, EventArgs e)
         {
-            xFunc = data => (double)data.AreaSize;
+            xFunc = data => (double)data.P2;
             xFuncMax = xFunc;
             CreatePoints();
             Draw();
@@ -118,7 +118,7 @@ namespace iadip
 
         private void btnXBath_Click(object sender, EventArgs e)
         {
-            xFunc = data => (double)data.BathroomsCount;
+            xFunc = data => (double)data.P4;
             xFuncMax = xFunc;
             CreatePoints();
             Draw();
@@ -126,7 +126,7 @@ namespace iadip
 
         private void btnXRooms_Click(object sender, EventArgs e)
         {
-            xFunc = data => (double)data.RoomsCount;
+            xFunc = data => (double)data.P3;
             xFuncMax = xFunc;
             CreatePoints();
             Draw();
@@ -134,7 +134,7 @@ namespace iadip
 
         private void btnYCost_Click(object sender, EventArgs e)
         {
-            yFunc = data => (double)data.Cost;
+            yFunc = data => (double)data.P1;
             yFuncMax = yFunc;
             CreatePoints();
             Draw();
@@ -142,7 +142,7 @@ namespace iadip
 
         private void btnYArea_Click(object sender, EventArgs e)
         {
-            yFunc = data => (double)data.AreaSize;
+            yFunc = data => (double)data.P2;
             yFuncMax = yFunc;
             CreatePoints();
             Draw();
@@ -150,7 +150,7 @@ namespace iadip
 
         private void btnYBath_Click(object sender, EventArgs e)
         {
-            yFunc = data => (double)data.BathroomsCount;
+            yFunc = data => (double)data.P4;
             yFuncMax = yFunc;
             CreatePoints();
             Draw();
@@ -158,7 +158,7 @@ namespace iadip
 
         private void btnYRooms_Click(object sender, EventArgs e)
         {
-            yFunc = data => (double)data.RoomsCount;
+            yFunc = data => (double)data.P3;
             yFuncMax = yFunc;
             CreatePoints();
             Draw();

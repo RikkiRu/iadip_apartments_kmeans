@@ -28,13 +28,18 @@
 ![Image result](screenshots/result.png)
 
 # Ограничения:
+
 ## Формат файла загрузки
 Загрузке подлежат файлы .tsv
-Пример входного файла: https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/iadip/iadip/SourceFile.tsv
+
+Пример входного файла: 
+* https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/iadip/iadip/SourceFile.tsv
+
 ## Файл локализации
 Программа требует файл Localization.txt рядом с исполняемым файлом .exe
 
-Файл локализации: https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/iadip/iadip/bin/Debug/Localiztion.txt
+Файл локализации:
+* https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/iadip/iadip/bin/Debug/Localization.txt
 
 Локализация представляет собой строки типа <ключ>_<значение>. Символ нижнего подчёркивания - разделитель.
 
@@ -54,8 +59,9 @@
 * param.lingv.1.word.2_Нормально
 * param.lingv.1.word.3_Дорого
 
-* Если значение попало в меньшую треть, выдаётся word.1
-* Если в большую word.3
+Правила оценки:
+* Если значение попало в меньшую треть (< 0.3), выдаётся word.1
+* Если в большую (> 0.7) word.3
 * Иначе word.2
 
 Параметр param.kmeans.elemsPerCluster отвечает за **ориентировочное** число элеменов в 1 кластере. На его основе выбирается число кластеров.

@@ -6,10 +6,6 @@ namespace iadip {
 
     enum ApartmentsParametres {
         Id = 0,
-        Cost = 1,
-        AreaSize = 2,
-        RoomsCount = 3,
-        BathroomsCount = 4,
         City = 6,
         Company = 8
     }

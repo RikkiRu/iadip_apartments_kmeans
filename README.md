@@ -33,9 +33,13 @@
 Пример входного файла: https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/iadip/iadip/SourceFile.tsv
 ## Файл локализации
 Программа требует файл Localization.txt рядом с исполняемым файлом .exe
-Файл локализации: https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/build/Localization.txt
+
+Файл локализации: https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/iadip/iadip/bin/Debug/Localiztion.txt
+
 Локализация представляет собой строки типа <ключ>_<значение> - символ '_' разделитель
+
 Номер параметра объекта должен соответствовать столбу в загружаемом файле
+
 В приведенном примере локализации введены параметры
 * paramname.1_P1 Цена
 * paramname.2_P2 Площадь
@@ -50,6 +54,8 @@ param.lingv.1.word.1_Дёшево
 param.lingv.1.word.2_Нормально
 param.lingv.1.word.3_Дорого
 
-Если значение попало в меньшую треть, выдаётся word.1
-Если в большую word.3
-Иначе word.2
+* Если значение попало в меньшую треть, выдаётся word.1
+* Если в большую word.3
+* Иначе word.2
+
+Параметр param.kmeans.elemsPerCluster отвечает за **ориентировочное** число элеменов в 1 кластере. На его основе выбирается число кластеров.

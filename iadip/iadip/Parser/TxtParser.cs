@@ -6,8 +6,6 @@ namespace iadip {
 
     enum ApartmentsParametres {
         Id = 0,
-        City = 6,
-        Company = 8
     }
 
     class TxtParser : IParser {
@@ -33,17 +31,12 @@ namespace iadip {
                         for (int i = 0; i < tempStringArray.Length; i++) {
                             bool isParsed = Double.TryParse(tempStringArray[i], out parsedResult);
 
-                            if (Program.DataExample.ParamValues.ContainsKey(i))
+                            if (i == (int)ApartmentsParametres.Id)
+                                tempApartment.Id = isParsed ? (int)parsedResult : 0;
+                            else if (Program.DataExample.ParamValues.ContainsKey(i))
                                 tempApartment.Data.Set(i, isParsed ? (int)parsedResult : 0);
-                            else
-                            {
-                                switch (i)
-                                {
-                                    case (int)ApartmentsParametres.Id: tempApartment.Id = isParsed ? (int)parsedResult : 0; break;
-                                    case (int)ApartmentsParametres.City: tempApartment.City = tempStringArray[i]; break;
-                                    case (int)ApartmentsParametres.Company: tempApartment.Company = tempStringArray[i]; break;
-                                }
-                            }
+                            else if (Program.AdditionalParams.Contains(i))
+                                tempApartment.SetOtherData(i, tempStringArray[i]);
                         }
 
                         apartments.Add(new SourceDataRow(tempApartment));

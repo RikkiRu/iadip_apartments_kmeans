@@ -16,26 +16,25 @@ namespace iadip
                 average.Set(pair.Key, v);
             }
 
-            List<string> cities = new List<string>();
-            foreach (var i in c.Apartaments) {
-                if (!cities.Contains(i.City)) {
-                    cities.Add(i.City);
+            Dictionary<int, List<string>> values = new Dictionary<int, List<string>>();
+
+            foreach (var index in Program.AdditionalParams)
+            {
+                values.Add(index, new List<string>());
+
+                foreach (var i1 in c.Apartaments)
+                {
+                    if (!values[index].Contains(i1.GetOtherData(index)))
+                        values[index].Add(i1.GetOtherData(index));
                 }
             }
 
-            List<string> companies = new List<string>();
-            foreach (var i in c.Apartaments) {
-                if (!companies.Contains(i.Company)) {
-                    companies.Add(i.Company);
-                }
-            }
-
-            return new ClusterOutputData() {
+            return new ClusterOutputData()
+            {
                 Max = max,
                 Min = min,
                 Average = average,
-                Cities = cities,
-                Companies = companies
+                Additional = values
             };
         }
 

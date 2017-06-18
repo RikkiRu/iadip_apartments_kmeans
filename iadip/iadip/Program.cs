@@ -8,6 +8,7 @@ namespace iadip
     {
         public static ClusterData DataExample;
         public static int PrimaryParamIndex = 1;
+        public static List<int> AdditionalParams;
 
         /// <summary>
         /// Главная точка входа для приложения.
@@ -22,6 +23,8 @@ namespace iadip
             List<int> p = Localization.Instance.GetLoadedParams();
             foreach (var i in p)
                 DataExample.Set(i, 0);
+
+            AdditionalParams = Localization.Instance.GetAdditionalParams();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

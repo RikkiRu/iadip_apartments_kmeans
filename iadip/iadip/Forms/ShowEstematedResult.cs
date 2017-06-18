@@ -26,18 +26,7 @@ namespace iadip
         }
 
         void IResultShower.Show(ClusterOutputData data) {
-            string cities = "";
-            string companies = "";
-            foreach(var i in data.Cities) {
-                if (string.IsNullOrEmpty(i))
-                    continue;
-                cities += i + "; ";
-            }
-            foreach (var i in data.Companies) {
-                if (string.IsNullOrEmpty(i))
-                    continue;
-                companies += i + "; ";
-            }
+
             tbResult.Text = string.Format("{0,-50}{1,10}" + Environment.NewLine, "Возможные параметры: ", "Средние параметры: ");
 
             StringBuilder b = new StringBuilder();
@@ -63,16 +52,20 @@ namespace iadip
                 b.Clear();
             }
 
-            tbResult.Text += b.ToString();
+            foreach (var i in data.Additional)
+            {
+                string name = Localization.Instance.AdditonalDataName(i.Key);
 
-            tbResult.Text += string.Format(
-                "-Города: {0}\n" + Environment.NewLine +
-                "-Компании: {1}\n",
-                cities,
-                companies          
-                );
+                tbResult.Text += name + ": ";
 
-            tbResult.Text += Environment.NewLine;
+                foreach (var j in i.Value)
+                {
+                    if (!string.IsNullOrEmpty(j))
+                        tbResult.Text += j + "; ";
+                }
+
+                tbResult.Text += Environment.NewLine;
+            }
         }
 
         void Mape(ClusterOutputData clusterData, ClusterSearchOptions sourceData, Cluster cluster)

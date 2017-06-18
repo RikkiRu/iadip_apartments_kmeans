@@ -22,8 +22,6 @@ namespace iadip
 
             string keyCluster = "Cluster";
             string keyId = "Id";
-            string keyCity = "City";
-            string keyCompany = "Company";
 
             table.Columns.Add(keyCluster);
             table.Columns.Add(keyId);
@@ -35,8 +33,11 @@ namespace iadip
                 table.Columns.Add(column);
             }
 
-            table.Columns.Add(keyCity);
-            table.Columns.Add(keyCompany);
+            foreach (var a in Program.AdditionalParams)
+            {
+                string column = Localization.Instance.AdditonalDataName(a);
+                table.Columns.Add(column);
+            }
 
             DataRow r = null;
 
@@ -54,8 +55,12 @@ namespace iadip
                     r[column] = string.Format("{0:0.00}", c.Center.Get(pair.Key));
                 }
 
-                r[keyCity] = "-";
-                r[keyCompany] = "-";
+                foreach (var a in Program.AdditionalParams)
+                {
+                    string column = Localization.Instance.AdditonalDataName(a);
+                    r[column] = "-";
+                }
+
                 table.Rows.Add(r);
 
                 for (int j = 0; j < c.Apartaments.Count; j++)
@@ -73,8 +78,12 @@ namespace iadip
                         r[column] = data.Get(pair.Key);
                     }
 
-                    r[keyCity] = a.City;
-                    r[keyCompany] = a.Company;
+                    foreach (var t in Program.AdditionalParams)
+                    {
+                        string column = Localization.Instance.AdditonalDataName(t);
+                        r[column] = a.GetOtherData(t);
+                    }
+
                     table.Rows.Add(r);
                 }
 

@@ -59,6 +59,27 @@ namespace iadip
             return loaded;
         }
 
+        public List<int> GetAdditionalParams()
+        {
+            List<int> loaded = new List<int>();
+
+            foreach (var i in keys)
+            {
+                if (i.Key.StartsWith("additionalData."))
+                {
+                    string[] n = i.Key.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+                    loaded.Add(int.Parse(n[1]));
+                }
+            }
+
+            return loaded;
+        }
+
+        public string AdditonalDataName(int index)
+        {
+            return Get("additionalData." + index);
+        }
+
         public string ClusterDataParamName(int index)
         {
             return Get("paramname." + index);

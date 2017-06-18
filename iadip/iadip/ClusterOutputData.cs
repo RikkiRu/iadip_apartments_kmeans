@@ -8,7 +8,6 @@ namespace iadip
         public ClusterData Max;
         public ClusterData Average;
 
-        public List<string> Cities;
-        public List<string> Companies;
+        public Dictionary<int, List<string>> Additional;
     }
 }

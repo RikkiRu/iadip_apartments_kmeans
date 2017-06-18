@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace iadip
+﻿namespace iadip
 {
     public class ClusterData
     {
         public double Cost;
-        public int AreaSize;
-        public int RoomsCount;
-        public int BathroomsCount;
+        public double AreaSize;
+        public double RoomsCount;
+        public double BathroomsCount;
 
         public override string ToString()
         {

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace iadip
 {
     public class Cluster
     {
-        public ClusterDataLerp Center;
+        public ClusterData Center;
         public List<Apartament> Apartaments;
     }
 }

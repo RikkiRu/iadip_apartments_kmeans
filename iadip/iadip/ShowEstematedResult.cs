@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace iadip {
+namespace iadip
+{
     public partial class ShowEstematedResult : Form, IResultShower {
 
         IClusterOutput output = new SimpleClusterOutput();
@@ -56,9 +53,6 @@ namespace iadip {
 
         void Mape(ClusterOutputData clusterData, SourceData sourceData, Cluster cluster)
         {
-            if (Form1.apartments == null)
-                return;
-
             var e = cluster.Apartaments.FirstOrDefault(c => c.Data.Cost == sourceData.Cost);
 
             if (e == null)
@@ -80,28 +74,29 @@ namespace iadip {
 
             StringBuilder b = new StringBuilder();
             b.AppendLine();
+            b.AppendLine();
             b.AppendLine(e.ToString());
 
-            b.AppendFormat("MAPE центр. площадь: {0}", centerMapeArea);
+            b.AppendFormat("MAPE центр. площадь: {0:0.00}", centerMapeArea);
             b.AppendLine();
-            b.AppendFormat("MAPE центр. цена: {0}", centerMapeCost);
+            b.AppendFormat("MAPE центр. цена: {0:0.00}", centerMapeCost);
             b.AppendLine();
-            b.AppendFormat("MAPE центр. комнаты: {0}", centerMapeRooms);
+            b.AppendFormat("MAPE центр. комнаты: {0:0.00}", centerMapeRooms);
             b.AppendLine();
-            b.AppendFormat("MAPE центр. ванные: {0}", centerMapeBaths);
+            b.AppendFormat("MAPE центр. ванные: {0:0.00}", centerMapeBaths);
             b.AppendLine();
-            b.AppendFormat("MAPE центр. общее: {0}", centerAvg);
+            b.AppendFormat("MAPE центр. общее: {0:0.00}", centerAvg);
             b.AppendLine();
 
-            b.AppendFormat("MAPE среднее. площадь: {0}", avgMapeArea);
+            b.AppendFormat("MAPE среднее. площадь: {0:0.00}", avgMapeArea);
             b.AppendLine();
-            b.AppendFormat("MAPE среднее. цена: {0}", avgMapeCost);
+            b.AppendFormat("MAPE среднее. цена: {0:0.00}", avgMapeCost);
             b.AppendLine();
-            b.AppendFormat("MAPE среднее. комнаты: {0}", avgMapeRooms);
+            b.AppendFormat("MAPE среднее. комнаты: {0:0.00}", avgMapeRooms);
             b.AppendLine();
-            b.AppendFormat("MAPE среднее. ванные: {0}", avgMapeBaths);
+            b.AppendFormat("MAPE среднее. ванные: {0:0.00}", avgMapeBaths);
             b.AppendLine();
-            b.AppendFormat("MAPE среднее. общее: {0}", avgAvg);
+            b.AppendFormat("MAPE среднее. общее: {0:0.00}", avgAvg);
             b.AppendLine();
 
             tbResult.Text += b.ToString();

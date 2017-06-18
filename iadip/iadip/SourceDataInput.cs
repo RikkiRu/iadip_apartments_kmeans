@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace iadip {
+namespace iadip
+{
     public partial class SourceDataInput : Form {
 
         IEstimator estimator = new SimpleEstimator();
@@ -36,7 +31,7 @@ namespace iadip {
                 ShowEstematedResult ser = new ShowEstematedResult();
                 ser.Init(estimator.Estimate(clustersForEstimator, data), data);
                 ser.ShowDialog();
-                Show();
+                Close();
             }
         }
     }

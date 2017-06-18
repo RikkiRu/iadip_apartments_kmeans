@@ -4,39 +4,19 @@ using System.Linq;
 
 namespace iadip
 {
-    public class ClusterDataLerp
-    {
-        public double Cost;
-        public double AreaSize;
-        public double RoomsCount;
-        public double BathroomsCount;
-
-        public override string ToString()
-        {
-            return
-                string.Format(
-                    "ClusterDataLerp. Cost: {0:0.00}, AreaSize: {1:0.00}, RoomsCount: {2:0.00}, BathroomsCount: {3:0.00}",
-                    Cost,
-                    AreaSize,
-                    RoomsCount,
-                    BathroomsCount
-                    );
-        }
-    }
-
     static class ClusterDataExtension
     {
-        public static ClusterDataLerp ToLerp(this ClusterData source)
+        public static ClusterData Clone(this ClusterData source)
         {
-            ClusterDataLerp lerp = new ClusterDataLerp();
-            lerp.Cost = source.Cost;
-            lerp.AreaSize = source.AreaSize;
-            lerp.RoomsCount = source.RoomsCount;
-            lerp.BathroomsCount = source.BathroomsCount;
-            return lerp;
+            ClusterData clone = new ClusterData();
+            clone.Cost = source.Cost;
+            clone.AreaSize = source.AreaSize;
+            clone.RoomsCount = source.RoomsCount;
+            clone.BathroomsCount = source.BathroomsCount;
+            return clone;
         }
 
-        public static double Distance(ClusterDataLerp c1, ClusterDataLerp c2, ClusterData max)
+        public static double Distance(ClusterData c1, ClusterData c2, ClusterData max)
         {
             double cost = Math.Pow(Math.Abs(c1.Cost - c2.Cost) / max.Cost, 2);
             double area = Math.Pow(Math.Abs(c1.AreaSize - c2.AreaSize) / max.AreaSize, 2);
@@ -48,9 +28,9 @@ namespace iadip
         public static ClusterData ClusterMax(this List<ClusterData> data)
         {
             double cost = data.Max(c => c.Cost);
-            int area = data.Max(c => c.AreaSize);
-            int rooms = data.Max(c => c.RoomsCount);
-            int bathrooms = data.Max(c => c.BathroomsCount);
+            double area = data.Max(c => c.AreaSize);
+            double rooms = data.Max(c => c.RoomsCount);
+            double bathrooms = data.Max(c => c.BathroomsCount);
 
             return new ClusterData()
             {
@@ -63,9 +43,9 @@ namespace iadip
 
         public static ClusterData ClusterMax(this List<Apartament> data) {
             double cost = data.Max(c => c.Data.Cost);
-            int area = data.Max(c => c.Data.AreaSize);
-            int rooms = data.Max(c => c.Data.RoomsCount);
-            int bathrooms = data.Max(c => c.Data.BathroomsCount);
+            double area = data.Max(c => c.Data.AreaSize);
+            double rooms = data.Max(c => c.Data.RoomsCount);
+            double bathrooms = data.Max(c => c.Data.BathroomsCount);
 
             return new ClusterData() {
                 Cost = cost,
@@ -77,9 +57,9 @@ namespace iadip
 
         public static ClusterData ClusterMin(this List<Apartament> data) {
             double cost = data.Min(c => c.Data.Cost);
-            int area = data.Min(c => c.Data.AreaSize);
-            int rooms = data.Min(c => c.Data.RoomsCount);
-            int bathrooms = data.Min(c => c.Data.BathroomsCount);
+            double area = data.Min(c => c.Data.AreaSize);
+            double rooms = data.Min(c => c.Data.RoomsCount);
+            double bathrooms = data.Min(c => c.Data.BathroomsCount);
 
             return new ClusterData() {
                 Cost = cost,

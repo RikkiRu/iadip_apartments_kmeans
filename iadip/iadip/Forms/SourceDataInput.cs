@@ -11,6 +11,9 @@ namespace iadip
 
         public SourceDataInput() {
             InitializeComponent();
+
+            labelInputText.Text = Localization.Instance.Get("param.label.enterOptionValue");
+            buttonStart.Text = Localization.Instance.Get("param.label.startEstimateProcessButton");
         }
 
         public void Init(List<Cluster> clusters) {

@@ -1,5 +1,8 @@
 param.kmeans.elemsPerCluster_100
 
+param.label.enterOptionValue_Введите стоимость квартиры
+param.label.startEstimateProcessButton_Найти квартиру
+
 paramname.1_P1 Цена
 paramname.2_P2 Площадь
 paramname.3_P3 Комнаты

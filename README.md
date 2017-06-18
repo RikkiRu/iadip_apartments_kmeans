@@ -28,6 +28,28 @@
 ![Image result](screenshots/result.png)
 
 # Ограничения:
-* Загрузке подлежат файлы .tsv
+## Формат файла загрузки
+Загрузке подлежат файлы .tsv
 Пример входного файла: https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/iadip/iadip/SourceFile.tsv
-* Программа требует файл Localization.txt рядом с исполняемым файлом .exe
+## Файл локализации
+Программа требует файл Localization.txt рядом с исполняемым файлом .exe
+Файл локализации: https://github.com/RikkiRu/iadip_apartments_kmeans/blob/master/build/Localization.txt
+Локализация представляет собой строки типа <ключ>_<значение> - символ '_' разделитель
+Номер параметра объекта должен соответствовать столбу в загружаемом файле
+В приведенном примере локализации введены параметры
+* paramname.1_P1 Цена
+* paramname.2_P2 Площадь
+* paramname.3_P3 Комнаты
+* paramname.4_P4 Ванные
+Первый параметр в программе используется для поиска ближайшего кластера
+
+Лингвистическая оценка настраивается строками вида (для параметра номер 1)
+param.lingv.1.split.1_0.3
+param.lingv.1.split.2_0.7
+param.lingv.1.word.1_Дёшево
+param.lingv.1.word.2_Нормально
+param.lingv.1.word.3_Дорого
+
+Если значение попало в меньшую треть, выдаётся word.1
+Если в большую word.3
+Иначе word.2

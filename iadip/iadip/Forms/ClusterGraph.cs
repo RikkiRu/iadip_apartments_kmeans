@@ -33,12 +33,24 @@ namespace iadip
         {
             this.clusters = clusters;
 
-            xFunc = data => (double)data.P1;
-            yFunc = data => (double)data.P2;
-            xFuncMax = xFunc;
-            yFuncMax = yFunc;
+            xFunc = data => 0.5;
+            yFunc = data => 0.5;
+            yFuncMax = data => 1;
+            xFuncMax = data => 1;
 
             CreatePoints();
+
+            ClusterData example = Program.DataExample;
+            foreach (var pair in example.ParamValues)
+            {
+                comboBoxX.Items.Add(Localization.Instance.ClusterDataParamName(pair.Key));
+                comboBoxY.Items.Add(Localization.Instance.ClusterDataParamName(pair.Key));
+            }
+
+            comboBoxX.Items.Add(Localization.Instance.Get("words.constant"));
+            comboBoxY.Items.Add(Localization.Instance.Get("words.constant"));
+            comboBoxX.Text = Localization.Instance.Get("words.constant");
+            comboBoxY.Text = Localization.Instance.Get("words.constant");
         }
         
         private ClusterData GetMax()
@@ -100,80 +112,54 @@ namespace iadip
             Draw();
         }
 
-        private void btnXCost_Click(object sender, EventArgs e)
+        private void comboBoxX_SelectedIndexChanged(object sender, EventArgs e)
         {
-            xFunc = data => (double)data.P1;
-            xFuncMax = xFunc;
-            CreatePoints();
-            Draw();
-        }
+            ClusterData example = Program.DataExample;
 
-        private void btnXArea_Click(object sender, EventArgs e)
-        {
-            xFunc = data => (double)data.P2;
-            xFuncMax = xFunc;
-            CreatePoints();
-            Draw();
-        }
+            object selection = comboBoxX.Text;
+            string v = selection == null ? string.Empty : selection.ToString();
+            foreach (var pair in example.ParamValues)
+            {
+                string name = Localization.Instance.ClusterDataParamName(pair.Key);
 
-        private void btnXBath_Click(object sender, EventArgs e)
-        {
-            xFunc = data => (double)data.P4;
-            xFuncMax = xFunc;
-            CreatePoints();
-            Draw();
-        }
+                if (name.Equals(v))
+                {
+                    int k = pair.Key;
+                    xFunc = data => data.Get(k);
+                    xFuncMax = xFunc;
+                    CreatePoints();
+                    Draw();
+                    return;
+                }
+            }
 
-        private void btnXRooms_Click(object sender, EventArgs e)
-        {
-            xFunc = data => (double)data.P3;
-            xFuncMax = xFunc;
-            CreatePoints();
-            Draw();
-        }
-
-        private void btnYCost_Click(object sender, EventArgs e)
-        {
-            yFunc = data => (double)data.P1;
-            yFuncMax = yFunc;
-            CreatePoints();
-            Draw();
-        }
-
-        private void btnYArea_Click(object sender, EventArgs e)
-        {
-            yFunc = data => (double)data.P2;
-            yFuncMax = yFunc;
-            CreatePoints();
-            Draw();
-        }
-
-        private void btnYBath_Click(object sender, EventArgs e)
-        {
-            yFunc = data => (double)data.P4;
-            yFuncMax = yFunc;
-            CreatePoints();
-            Draw();
-        }
-
-        private void btnYRooms_Click(object sender, EventArgs e)
-        {
-            yFunc = data => (double)data.P3;
-            yFuncMax = yFunc;
-            CreatePoints();
-            Draw();
-        }
-
-        private void btnXConst_Click(object sender, EventArgs e)
-        {
             xFunc = data => 0.5;
             xFuncMax = data => 1;
             CreatePoints();
             Draw();
         }
 
-        private void btnYConst_Click(object sender, EventArgs e)
+        private void comboBoxY_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ClusterData example = Program.DataExample;
+
+            object selection = comboBoxY.Text;
+            string v = selection == null ? string.Empty : selection.ToString();
+            foreach (var pair in example.ParamValues)
+            {
+                string name = Localization.Instance.ClusterDataParamName(pair.Key);
+
+                if (name.Equals(v))
+                {
+                    int k = pair.Key;
+                    yFunc = data => data.Get(k);
+                    yFuncMax = yFunc;
+                    CreatePoints();
+                    Draw();
+                    return;
+                }
+            }
+
             yFunc = data => 0.5;
             yFuncMax = data => 1;
             CreatePoints();

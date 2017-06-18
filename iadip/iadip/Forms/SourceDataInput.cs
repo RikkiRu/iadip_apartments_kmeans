@@ -24,7 +24,7 @@ namespace iadip
                 return;
             } else {
                 ClusterSearchOptions data = new ClusterSearchOptions() {
-                    P1 = parsedValue
+                    ParamValue = parsedValue
                 };
 
                 Hide();

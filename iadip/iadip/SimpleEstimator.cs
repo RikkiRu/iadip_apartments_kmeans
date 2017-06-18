@@ -10,10 +10,14 @@ namespace iadip {
             Cluster resultCluster = new Cluster();
             double minDistanceBetweenDots = double.MaxValue;
 
-            foreach (var singleCluster in clusters) {
-                if (Math.Abs(sourceData.P1 - singleCluster.Center.P1) < minDistanceBetweenDots) {
+            foreach (var singleCluster in clusters)
+            {
+                double m = Math.Abs(sourceData.ParamValue - singleCluster.Center.Get(sourceData.ParamIndex));
+
+                if (m < minDistanceBetweenDots)
+                {
                     resultCluster = singleCluster;
-                    minDistanceBetweenDots = Math.Abs(sourceData.P1 - singleCluster.Center.P1);
+                    minDistanceBetweenDots = m;
                 }
             }
 

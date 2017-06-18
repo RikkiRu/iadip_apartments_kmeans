@@ -8,12 +8,13 @@ namespace iadip
 
             ClusterData max = ClusterDataExtension.ClusterMax(c.Apartaments);
             ClusterData min = ClusterDataExtension.ClusterMin(c.Apartaments);
-            ClusterData average = new ClusterData() {
-                P1 = (max.P1 + min.P1) / 2,
-                P2 = (max.P2 + min.P2) / 2,
-                P3 = (max.P3 + min.P3) / 2,
-                P4 = (max.P4 + min.P4) / 2
-            };
+            ClusterData average = new ClusterData();
+
+            foreach (var pair in Program.DataExample.ParamValues)
+            {
+                double v = (max.Get(pair.Key) + min.Get(pair.Key)) / 2;
+                average.Set(pair.Key, v);
+            }
 
             List<string> cities = new List<string>();
             foreach (var i in c.Apartaments) {

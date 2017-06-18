@@ -104,10 +104,13 @@ namespace iadip
         private ClusterData GetCenter(List<ClusterData> apartaments)
         {
             ClusterData allAverage = new ClusterData();
-            allAverage.P2 = apartaments.Sum(a => a.P2) / apartaments.Count;
-            allAverage.P4 = apartaments.Sum(a => a.P4) / apartaments.Count;
-            allAverage.P1 = apartaments.Sum(a => a.P1) / apartaments.Count;
-            allAverage.P3 = apartaments.Sum(a => a.P3) / apartaments.Count;
+
+            foreach (var pair in Program.DataExample.ParamValues)
+            {
+                double v = apartaments.Sum(a => a.Get(pair.Key)) / apartaments.Count;
+                allAverage.Set(pair.Key, v);
+            }
+
             return allAverage;
         }
 

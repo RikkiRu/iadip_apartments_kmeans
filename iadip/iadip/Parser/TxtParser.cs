@@ -36,16 +36,18 @@ namespace iadip {
                     if (Double.TryParse(tempStringArray[0], out parsedResult)) {
                         for (int i = 0; i < tempStringArray.Length; i++) {
                             bool isParsed = Double.TryParse(tempStringArray[i], out parsedResult);
-                            switch (i) {
-                                case (int)ApartmentsParametres.Id: tempApartment.Id = isParsed ? (int)parsedResult : 0; break;
-                                case (int)ApartmentsParametres.Cost: tempApartment.Data.P1 = isParsed ? parsedResult : 0; break;
-                                case (int)ApartmentsParametres.AreaSize: tempApartment.Data.P2 = isParsed ? parsedResult : 0; break;
-                                case (int)ApartmentsParametres.RoomsCount: tempApartment.Data.P3 = isParsed ? parsedResult : 0; break;
-                                case (int)ApartmentsParametres.BathroomsCount: tempApartment.Data.P4 = isParsed ? parsedResult : 0; break;
-                                case (int)ApartmentsParametres.City: tempApartment.City = tempStringArray[i]; break;
-                                case (int)ApartmentsParametres.Company: tempApartment.Company = tempStringArray[i]; break;
-                            }
 
+                            if (Program.DataExample.ParamValues.ContainsKey(i))
+                                tempApartment.Data.Set(i, isParsed ? (int)parsedResult : 0);
+                            else
+                            {
+                                switch (i)
+                                {
+                                    case (int)ApartmentsParametres.Id: tempApartment.Id = isParsed ? (int)parsedResult : 0; break;
+                                    case (int)ApartmentsParametres.City: tempApartment.City = tempStringArray[i]; break;
+                                    case (int)ApartmentsParametres.Company: tempApartment.Company = tempStringArray[i]; break;
+                                }
+                            }
                         }
 
                         apartments.Add(new SourceDataRow(tempApartment));

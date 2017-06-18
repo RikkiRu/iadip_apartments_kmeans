@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -67,37 +68,35 @@ namespace iadip
 
                 ClusterOutputData data = output.Calculate(c);
 
-                b.AppendFormat("Минимальная площадь {0}", data.Min.P2);
-                b.AppendLine();
-                b.AppendFormat("Средняя площадь {0:0.00}", c.Center.P2);
-                b.AppendLine();
-                b.AppendFormat("Максимальная площадь {0}", data.Max.P2);
-                b.AppendLine();
-                b.AppendLine();
+                foreach (var pair in Program.DataExample.ParamValues)
+                {
+                    double min = data.Min.Get(pair.Key);
+                    double avg = c.Center.Get(pair.Key);
+                    double max = data.Max.Get(pair.Key);
 
-                b.AppendFormat("Минимальное число ванн {0}", data.Min.P4);
-                b.AppendLine();
-                b.AppendFormat("Среднее число ванн {0:0.00}", c.Center.P4);
-                b.AppendLine();
-                b.AppendFormat("Максимальное число ванн {0}", data.Max.P4);
-                b.AppendLine();
-                b.AppendLine();
+                    b.Append(Localization.Instance.Get("words.min"));
+                    b.Append(" ");
+                    b.Append(Localization.Instance.ClusterDataParamName(pair.Key));
+                    b.Append(" ");
+                    b.AppendFormat("{0:0.00}", min);
+                    b.AppendLine();
 
-                b.AppendFormat("Минимальная цена {0}", data.Min.P1);
-                b.AppendLine();
-                b.AppendFormat("Средняя цена {0:0.00}", c.Center.P1);
-                b.AppendLine();
-                b.AppendFormat("Максимальная цена {0}", data.Max.P1);
-                b.AppendLine();
-                b.AppendLine();
+                    b.Append(Localization.Instance.Get("words.avg"));
+                    b.Append(" ");
+                    b.Append(Localization.Instance.ClusterDataParamName(pair.Key));
+                    b.Append(" ");
+                    b.AppendFormat("{0:0.00}", avg);
+                    b.AppendLine();
 
-                b.AppendFormat("Минимальнаое число комнат {0}", data.Min.P3);
-                b.AppendLine();
-                b.AppendFormat("Среднее число комнат {0:0.00}", c.Center.P3);
-                b.AppendLine();
-                b.AppendFormat("Максимальное число комнат {0}", data.Max.P3);
-                b.AppendLine();
-                b.AppendLine();
+                    b.Append(Localization.Instance.Get("words.max"));
+                    b.Append(" ");
+                    b.Append(Localization.Instance.ClusterDataParamName(pair.Key));
+                    b.Append(" ");
+                    b.AppendFormat("{0:0.00}", max);
+                    b.AppendLine();
+
+                    b.AppendLine();
+                }
             }
 
             richTextBox1.Text = b.ToString();
@@ -112,17 +111,16 @@ namespace iadip
             DataTable table = new DataTable();
             string keyId = "ID";
             string keyElements = "Элементы";
-            string keyAreaSize = "Площадь";
-            string keyBathrooms = "Ванные";
-            string keyCost = "Цена";
-            string keyRooms = "Комнаты";
 
             table.Columns.Add(keyId);
             table.Columns.Add(keyElements);
-            table.Columns.Add(keyCost);
-            table.Columns.Add(keyAreaSize);
-            table.Columns.Add(keyRooms);
-            table.Columns.Add(keyBathrooms);
+
+            ClusterData example = Program.DataExample;
+            foreach (var pair in example.ParamValues)
+            {
+                string column = Localization.Instance.ClusterDataParamName(pair.Key);
+                table.Columns.Add(column);
+            }
 
             DataRow r = null;
 
@@ -136,15 +134,25 @@ namespace iadip
                 r[keyElements] = string.Format("{0:0.00}% ({1})", percent, c.Apartaments.Count);
                 table.Rows.Add(r);
 
-                double relativeAreaSize = c.Center.P2 / globalMax.P2;
-                double relativeBaths = c.Center.P4 / globalMax.P4;
-                double relativeCost = c.Center.P1 / globalMax.P1;
-                double relativeRooms = c.Center.P3 / globalMax.P3;
+                foreach (var pair in example.ParamValues)
+                {
+                    string column = Localization.Instance.ClusterDataParamName(pair.Key);
 
-                r[keyAreaSize] = GetLingvisticEstimate(relativeAreaSize, 0.3, 0.7, "Маленькая", "Средняя", "Большая");
-                r[keyBathrooms] = GetLingvisticEstimate(relativeBaths, 0.3, 0.7, "Мало", "Нормально", "Много");
-                r[keyCost] = GetLingvisticEstimate(relativeCost, 0.3, 0.7, "Дёшево", "Нормально", "Дорого");
-                r[keyRooms] = GetLingvisticEstimate(relativeRooms, 0.3, 0.7, "Мало", "Нормально", "Много");
+                    double relative = c.Center.Get(pair.Key) / globalMax.Get(pair.Key);
+
+                    string s1 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".split.1");
+                    string s2 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".split.2");
+                    string w1 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.1");
+                    string w2 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.2");
+                    string w3 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.3");
+
+                    double d1 = double.Parse(s1, CultureInfo.InvariantCulture.NumberFormat);
+                    double d2 = double.Parse(s2, CultureInfo.InvariantCulture.NumberFormat);
+
+                    string v = GetLingvisticEstimate(relative, d1, d2, w1, w2, w3);
+
+                    r[column] = v;
+                }
             }
 
             return table;

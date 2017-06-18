@@ -9,7 +9,7 @@
 
         public override string ToString()
         {
-            return string.Format("SourceDataRow {0}", Data.ToString());
+            return string.Format("{0} {1} {2} {3}", Id, Data.ToString(), City, Company);
         }
 
         public SourceDataRow() {
@@ -17,12 +17,7 @@
         }
 
         public SourceDataRow(SourceDataRow row) {
-            Data = new ClusterData() {
-                P1 = row.Data.P1,
-                P2 = row.Data.P2,
-                P3 = row.Data.P3,
-                P4 = row.Data.P4
-            };
+            Data = row.Data.Clone();
             Id = row.Id;
             City = row.City;
             Company = row.Company;

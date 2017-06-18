@@ -1,22 +1,53 @@
-﻿namespace iadip
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace iadip
 {
     public class ClusterData
     {
-        public double P1;
-        public double P2;
-        public double P3;
-        public double P4;
+        public ClusterData()
+        {
+            ParamValues = new Dictionary<int, double>();
+        }
+
+        public Dictionary<int, double> ParamValues { get; private set; }
+
+        public void Set(int paramIndex, double value)
+        {
+            ParamValues[paramIndex] = value;
+        }
+
+        public double Get(int paramIndex)
+        {
+            if (!ParamValues.ContainsKey(paramIndex))
+                throw new Exception("Param not found: " + paramIndex + "; This: " + ToString());
+
+            return ParamValues[paramIndex];
+        }
+
+        public ClusterData Clone()
+        {
+            ClusterData n = new ClusterData();
+
+            foreach (var pair in ParamValues)
+                n.Set(pair.Key, pair.Value);
+
+            return n;
+        }
 
         public override string ToString()
         {
-            return
-                string.Format(
-                    "ClusterData. P1: {0}, P2: {1}, P3: {2}, P4: {3}",
-                    P1,
-                    P2,
-                    P3,
-                    P4
-                    );
+            StringBuilder b = new StringBuilder();
+            foreach (var pair in ParamValues)
+            {
+                b.Append(Localization.Instance.ClusterDataParamName(pair.Key));
+                b.Append(": ");
+                b.AppendFormat("{0:0.00}", pair.Value);
+                b.Append("; ");
+            }
+
+            return b.ToString();
         }
     }
 }

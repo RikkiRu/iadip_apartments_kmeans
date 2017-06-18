@@ -6,67 +6,66 @@ namespace iadip
 {
     static class ClusterDataExtension
     {
-        public static ClusterData Clone(this ClusterData source)
-        {
-            ClusterData clone = new ClusterData();
-            clone.P1 = source.P1;
-            clone.P2 = source.P2;
-            clone.P3 = source.P3;
-            clone.P4 = source.P4;
-            return clone;
-        }
-
         public static double Distance(ClusterData c1, ClusterData c2, ClusterData max)
         {
-            double cost = Math.Pow(Math.Abs(c1.P1 - c2.P1) / max.P1, 2);
-            double area = Math.Pow(Math.Abs(c1.P2 - c2.P2) / max.P2, 2);
-            double rooms = Math.Pow(Math.Abs(c1.P3 - c2.P3) / max.P3, 2);
-            double bath = Math.Pow(Math.Abs(c1.P4 - c2.P4) / max.P4, 2);
-            return Math.Sqrt(cost + area + rooms + bath);
+            List<double> pows = new List<double>();
+            foreach(var pair in c1.ParamValues)
+            {
+                int key = pair.Key;
+                double v = Math.Pow(Math.Abs(c1.Get(key) - c2.Get(key)) / max.Get(key), 2);
+                pows.Add(v);
+            }
+
+            double sum = pows.Sum();
+            return Math.Sqrt(sum);
         }
 
         public static ClusterData ClusterMax(this List<ClusterData> data)
         {
-            double cost = data.Max(c => c.P1);
-            double area = data.Max(c => c.P2);
-            double rooms = data.Max(c => c.P3);
-            double bathrooms = data.Max(c => c.P4);
-
-            return new ClusterData()
-            {
-                P1 = cost,
-                P2 = area,
-                P3 = rooms,
-                P4 = bathrooms
-            };
+            return data.ClusterFunc(true);
         }
 
-        public static ClusterData ClusterMax(this List<SourceDataRow> data) {
-            double cost = data.Max(c => c.Data.P1);
-            double area = data.Max(c => c.Data.P2);
-            double rooms = data.Max(c => c.Data.P3);
-            double bathrooms = data.Max(c => c.Data.P4);
+        public static ClusterData ClusterMin(this List<ClusterData> data)
+        {
+            return data.ClusterFunc(false);
+        }
 
-            return new ClusterData() {
-                P1 = cost,
-                P2 = area,
-                P3 = rooms,
-                P4 = bathrooms
-            };
+        public static ClusterData ClusterFunc(this List<ClusterData> data, bool isMax)
+        {
+            if (data.Count < 1)
+                throw new Exception("ClusterFunc require at least 1 element");
+
+            Dictionary<int, double> maxValues = new Dictionary<int, double>();
+
+            foreach (var pair in data[0].ParamValues)
+            {
+                int key = pair.Key;
+                double v = 0;
+
+                if (isMax)
+                    v = data.Max(c => c.Get(key));
+                else
+                    v = data.Min(c => c.Get(key));
+
+                maxValues.Add(key, v);
+            }
+
+            ClusterData max = new ClusterData();
+            foreach (var pair in maxValues)
+                max.Set(pair.Key, pair.Value);
+
+            return max;
+        }
+
+        public static ClusterData ClusterMax(this List<SourceDataRow> data)
+        {
+            List<ClusterData> d = data.Select(c => c.Data).ToList();
+            return d.ClusterMax();
         }
 
         public static ClusterData ClusterMin(this List<SourceDataRow> data) {
-            double cost = data.Min(c => c.Data.P1);
-            double area = data.Min(c => c.Data.P2);
-            double rooms = data.Min(c => c.Data.P3);
-            double bathrooms = data.Min(c => c.Data.P4);
-
-            return new ClusterData() {
-                P1 = cost,
-                P2 = area,
-                P3 = rooms,
-                P4 = bathrooms
-            };
+            List<ClusterData> d = data.Select(c => c.Data).ToList();
+            return d.ClusterMin();
         }  
     }
 }

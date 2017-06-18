@@ -2,6 +2,7 @@
 {
     public class ClusterSearchOptions
     {
-        public double P1;
+        public int ParamIndex = Program.PrimaryParamIndex;
+        public double ParamValue;
     }
 }

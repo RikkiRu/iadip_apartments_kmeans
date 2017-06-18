@@ -48,7 +48,7 @@
             // 
             this.tbResult.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tbResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbResult.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbResult.ForeColor = System.Drawing.Color.Black;
             this.tbResult.Location = new System.Drawing.Point(0, 44);
             this.tbResult.Multiline = true;

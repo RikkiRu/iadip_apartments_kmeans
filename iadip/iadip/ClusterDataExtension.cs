@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace iadip
 {
-    static class ClusterDataExtension
-    {
+    static class ClusterDataExtension {
+
         public static double Distance(ClusterData c1, ClusterData c2, ClusterData max)
         {
             List<double> pows = new List<double>();

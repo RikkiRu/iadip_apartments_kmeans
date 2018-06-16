@@ -14,6 +14,7 @@ namespace iadip
         public void Init(List<Cluster> clusters)
         {
             grid.DataSource = GetResultsTable(clusters);
+            grid.ScrollBars = ScrollBars.Both;
         }
 
         DataTable GetResultsTable(List<Cluster> clusters)
@@ -66,7 +67,8 @@ namespace iadip
                 for (int j = 0; j < c.Apartaments.Count; j++)
                 {
                     var a = c.Apartaments[j];
-                    var data = a.Data;
+                    //var data = a.Data;
+                    var data = a.OtherData;
 
                     r = table.NewRow();
                     r[keyId] = a.Id;
@@ -75,7 +77,7 @@ namespace iadip
                     foreach (var pair in example.ParamValues)
                     {
                         string column = Localization.Instance.ClusterDataParamName(pair.Key);
-                        r[column] = data.Get(pair.Key);
+                        r[column] = data[pair.Key];
                     }
 
                     foreach (var t in Program.AdditionalParams)

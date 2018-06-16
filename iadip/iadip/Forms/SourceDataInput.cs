@@ -16,6 +16,18 @@ namespace iadip
             buttonStart.Text = Localization.Instance.Get("param.label.startEstimateProcessButton");
         }
 
+        internal SimpleEstimator estimatorData {
+            get => default(SimpleEstimator);
+            set {
+            }
+        }
+
+        public Cluster clustersForEstimatorListData {
+            get => default(Cluster);
+            set {
+            }
+        }
+
         public void Init(List<Cluster> clusters) {
             clustersForEstimator = clusters;
         }

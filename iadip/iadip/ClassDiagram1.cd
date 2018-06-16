@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="iadip.SourceDataRow">
+    <Position X="4.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACgAAAAAAAAAAEAAAAAAAAgAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>SourceDataRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iadip.SimpleEstimator">
+    <Position X="2" Y="14.25" Width="1.5" />
+    <AssociationLine Name="ClusterSearchOptions" Type="iadip.ClusterSearchOptions" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="14.625" />
+        <Point X="3.688" Y="14.625" />
+        <Point X="3.688" Y="12.796" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.633" Y="0.272" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimpleEstimator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ClusterSearchOptions" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="iadip.SimpleClusterOutput">
+    <Position X="12" Y="10.25" Width="2" />
+    <AssociationLine Name="ClusterOutputData" Type="iadip.ClusterOutputData">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.048" Y="0.197" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimpleClusterOutput.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ClusterOutputData" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="iadip.Localization">
+    <Position X="14.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAIAABAAAAAAAAAAIJAAAAAQAACAAAACAA=</HashCode>
+      <FileName>Localization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iadip.KMeansV2">
+    <Position X="10.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAIAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>KMeansV2.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="iadip.ClusterSearchOptions">
+    <Position X="3.25" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>ClusterSearchOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iadip.ClusterOutputData">
+    <Position X="12.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAABAAAAAAEAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ClusterOutputData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iadip.ClusterDataExtension">
+    <Position X="13.75" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAABCAIAAAAAAAAA=</HashCode>
+      <FileName>ClusterDataExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iadip.Cluster">
+    <Position X="4.25" Y="6.5" Width="1.5" />
+    <AssociationLine Name="ApartmentsListData" Type="iadip.SourceDataRow">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.72" Y="0.135" Height="0.182" Width="1.625" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAGCAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Cluster.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ApartmentsListData" />
+      <Property Name="CenterData" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="iadip.ShowEstematedResult">
+    <Position X="9.75" Y="12.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAACAAAAAAAAKAAAACCAAAACAAAgACAAIBAAA=</HashCode>
+      <FileName>Forms\ShowEstematedResult.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="outputData" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="iadip.ShowClusters">
+    <Position X="12.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACIAAAAAAAKAAAACAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Forms\ShowClusters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iadip.Summary">
+    <Position X="9.75" Y="8.5" Width="1.5" />
+    <AssociationLine Name="outputData" Type="iadip.SimpleClusterOutput" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="9.5" />
+        <Point X="13.562" Y="9.5" />
+        <Point X="13.562" Y="10.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.595" Y="1.181" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAACIAAAAAAAKAAAAKCAAAAAAAAAASAAAAAAA=</HashCode>
+      <FileName>Forms\Summary.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="outputData" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="iadip.MainForm">
+    <Position X="7" Y="4.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="iadip.MainForm.FuzyTableColumn">
+        <TypeIdentifier>
+          <NewMemberFileName>Forms\MainForm.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="iadip.MainForm.DefuzyTableColumn">
+        <TypeIdentifier>
+          <NewMemberFileName>Forms\MainForm.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <AssociationLine Name="parserData" Type="iadip.TxtParser">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.185" Y="0.135" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="FullDataListData" Type="iadip.ClasterizeData">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.064" Y="0.06" Height="0.182" Width="1.364" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="apartmentsListData" Type="iadip.SourceDataRow">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.164" Y="0.209" Height="0.182" Width="1.422" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQCBiIICCUKACQUAACQABIiQAAEKAEUAgAAAAAAIEQ=</HashCode>
+      <FileName>Forms\MainForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="clustersData" />
+      <Property Name="parserData" />
+      <Property Name="clusterizeData" />
+      <Property Name="FullDataListData" />
+      <Property Name="apartmentsListData" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="iadip.ClusterData">
+    <Position X="1.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABEAAAAAAAAAEAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>ClusterData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iadip.TxtParser">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\TxtParser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="iadip.ClasterizeData">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\ClasterizeData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="iadip.SourceDataInput">
+    <Position X="4.75" Y="13.5" Width="1.75" />
+    <AssociationLine Name="clustersForEstimatorListData" Type="iadip.Cluster" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.245" Y="13.5" />
+        <Point X="6.245" Y="11.358" />
+        <Point X="3.753" Y="11.358" />
+        <Point X="3.753" Y="7.75" />
+        <Point X="4.25" Y="7.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.77" Y="-3.5" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AQBAAAQAACAAAAAAAgCAAAACAAAEAACAQAACAAAgAAA=</HashCode>
+      <FileName>Forms\SourceDataInput.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="estimatorData" />
+      <Property Name="clustersForEstimatorListData" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="iadip.ClusterGraph">
+    <Position X="1" Y="7.5" Width="2" />
+    <NestedTypes>
+      <Class Name="iadip.ClusterGraph.DPoint" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Forms\ClusterGraph.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="clustersData" Type="iadip.Cluster" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="8.375" />
+        <Point X="3.375" Y="8.375" />
+        <Point X="3.375" Y="7.5" />
+        <Point X="4.25" Y="7.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ABAAAABBYCEgIhIQAACAAAACAAAAIAAQAAACAQBAAEA=</HashCode>
+      <FileName>Forms\ClusterGraph.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="clustersData" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="iadip.ApartmentsParametres">
+    <Position X="2" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Parser\TxtParser.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

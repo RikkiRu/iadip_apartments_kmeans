@@ -11,7 +11,7 @@ namespace iadip
         {
             ClusterData globalMax = apartaments.Select(c => c.Data).ToList().ClusterMax();
             ClusterData globalCenter = GetCenter(apartaments.Select(c => c.Data.Clone()).ToList());
-            apartaments = apartaments.OrderBy(c => OrderByDistance(c, globalCenter, globalMax)).ToList();
+            //apartaments = apartaments.OrderBy(c => OrderByDistance(c, globalCenter, globalMax)).ToList();
 
             string elemsPerClusterStr = Localization.Instance.Get("param.kmeans.elemsPerCluster");
             int elemsPerCluster = int.Parse(elemsPerClusterStr, CultureInfo.InvariantCulture.NumberFormat);

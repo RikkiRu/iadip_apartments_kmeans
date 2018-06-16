@@ -34,13 +34,15 @@
             // 
             // grid
             // 
-            this.grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.grid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.ReadOnly = true;
             this.grid.RowHeadersVisible = false;
+            this.grid.RowHeadersWidth = 50;
             this.grid.ShowCellErrors = false;
             this.grid.ShowCellToolTips = false;
             this.grid.ShowEditingIcon = false;
@@ -52,6 +54,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(774, 297);
             this.Controls.Add(this.grid);
             this.Name = "ShowClusters";

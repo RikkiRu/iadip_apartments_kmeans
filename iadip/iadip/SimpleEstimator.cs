@@ -4,6 +4,11 @@ using System.Collections.Generic;
 namespace iadip {
 
     class SimpleEstimator : IEstimator {
+        public ClusterSearchOptions ClusterSearchOptions {
+            get => default(ClusterSearchOptions);
+            set {
+            }
+        }
 
         public Cluster Estimate(List<Cluster> clusters, ClusterSearchOptions sourceData) {
 

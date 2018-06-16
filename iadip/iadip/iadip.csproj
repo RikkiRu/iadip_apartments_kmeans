@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Designer.Interfaces, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\Microsoft.VisualStudio.Designer.Interfaces.1.1.4323\lib\net11\Microsoft.VisualStudio.Designer.Interfaces.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Localization.cs" />
+    <Compile Include="Parser\ClasterizeData.cs" />
     <Compile Include="SourceDataRow.cs" />
     <Compile Include="Cluster.cs" />
     <Compile Include="ClusterData.cs" />
@@ -58,11 +63,11 @@
       <DependentUpon>ClusterGraph.cs</DependentUpon>
     </Compile>
     <Compile Include="ClusterOutputData.cs" />
-    <Compile Include="Forms\Form1.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IClusterize.cs" />
     <Compile Include="Interfaces\IClusterOutput.cs" />
@@ -103,8 +108,8 @@
     <EmbeddedResource Include="Forms\ClusterGraph.resx">
       <DependentUpon>ClusterGraph.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -127,6 +132,8 @@
     <EmbeddedResource Include="Forms\Summary.resx">
       <DependentUpon>Summary.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

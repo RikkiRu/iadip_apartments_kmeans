@@ -6,5 +6,17 @@ namespace iadip
     {
         public ClusterData Center;
         public List<SourceDataRow> Apartaments;
+
+        public SourceDataRow ApartmentsListData {
+            get => default(SourceDataRow);
+            set {
+            }
+        }
+
+        public ClusterData CenterData {
+            get => default(ClusterData);
+            set {
+            }
+        }
     }
 }

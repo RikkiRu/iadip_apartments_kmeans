@@ -3,6 +3,6 @@
 namespace iadip {
 
     interface IParser {
-        List<SourceDataRow> ReadFile(string path);
+        ClasterizeData ReadFile (string path);
     }    
 }

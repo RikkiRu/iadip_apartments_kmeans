@@ -7,7 +7,7 @@ namespace iadip
     static class Program
     {
         public static ClusterData DataExample;
-        public static int PrimaryParamIndex = 1;
+        public static int PrimaryParamIndex = 2;
         public static List<int> AdditionalParams;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace iadip
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace iadip
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -53,7 +53,7 @@
             // dialogOpenDataFile
             // 
             this.dialogOpenDataFile.FileName = "data.tsv";
-            this.dialogOpenDataFile.Filter = "data files|*.tsv; *.txt|All files|*.*";
+            this.dialogOpenDataFile.Filter = "data files|*.tsv; *.txt;*.csv|All files|*.*";
             this.dialogOpenDataFile.FileOk += new System.ComponentModel.CancelEventHandler(this.dialogOpenDataFile_FileOk);
             // 
             // bTestEstimate

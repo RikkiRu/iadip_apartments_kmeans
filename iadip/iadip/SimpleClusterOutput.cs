@@ -3,6 +3,11 @@
 namespace iadip
 {
     class SimpleClusterOutput : IClusterOutput {
+        internal ClusterOutputData ClusterOutputData {
+            get => default(ClusterOutputData);
+            set {
+            }
+        }
 
         public ClusterOutputData Calculate(Cluster c) {
 

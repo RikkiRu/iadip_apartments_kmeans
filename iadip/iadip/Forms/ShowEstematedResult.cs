@@ -15,8 +15,15 @@ namespace iadip
             InitializeComponent();
         }
 
+        internal SimpleClusterOutput outputData {
+            get => default(SimpleClusterOutput);
+            set {
+            }
+        }
+
         public void Init(Cluster cluster, ClusterSearchOptions sourceData) {            
             gridResultCluster.DataSource = GetResultsTable(cluster);
+            gridResultCluster.Height = 100;
 
             var calcResult = output.Calculate(cluster);
 

@@ -14,6 +14,12 @@ namespace iadip
             InitializeComponent();
         }
 
+        public Cluster clustersData {
+            get => default(Cluster);
+            set {
+            }
+        }
+
         private class DPoint
         {
             public double x;

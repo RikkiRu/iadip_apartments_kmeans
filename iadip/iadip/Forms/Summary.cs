@@ -16,6 +16,12 @@ namespace iadip
             InitializeComponent();
         }
 
+        internal SimpleClusterOutput outputData {
+            get => default(SimpleClusterOutput);
+            set {
+            }
+        }
+
         public void Init(List<Cluster> clusters)
         {
             int elements = 0;
@@ -140,16 +146,17 @@ namespace iadip
 
                     double relative = c.Center.Get(pair.Key) / globalMax.Get(pair.Key);
 
-                    string s1 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".split.1");
-                    string s2 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".split.2");
-                    string w1 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.1");
-                    string w2 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.2");
-                    string w3 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.3");
+                    //string s1 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".split.1");
+                    //string s2 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".split.2");
+                    //string w1 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.1");
+                    //string w2 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.2");
+                    //string w3 = Localization.Instance.Get("param.lingv." + pair.Key.ToString() + ".word.3");
 
-                    double d1 = double.Parse(s1, CultureInfo.InvariantCulture.NumberFormat);
-                    double d2 = double.Parse(s2, CultureInfo.InvariantCulture.NumberFormat);
+                    //double d1 = double.Parse(s1, CultureInfo.InvariantCulture.NumberFormat);
+                    //double d2 = double.Parse(s2, CultureInfo.InvariantCulture.NumberFormat);
 
-                    string v = GetLingvisticEstimate(relative, d1, d2, w1, w2, w3);
+                    //string v = GetLingvisticEstimate(relative, d1, d2, w1, w2, w3);
+                    string v = relative.ToString();
 
                     r[column] = v;
                 }
